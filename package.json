@@ -6,7 +6,6 @@
     "typescript": "^4.7.4"
   },
   "private": true,
-  "main": "dist/main.js",
   "scripts": {
     "dev": "wrangler dev -l",
     "start": "wrangler dev",
