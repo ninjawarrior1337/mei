@@ -1,0 +1,4 @@
+name = "mei"
+compatibility_date = "2022-07-19"
+
+main = "src/main.tsx"
