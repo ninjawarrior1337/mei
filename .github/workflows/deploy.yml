@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
+      - run: npm ci
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
