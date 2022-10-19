@@ -2,3 +2,4 @@ name = "mei"
 compatibility_date = "2022-07-19"
 
 main = "src/main.tsx"
+account_id = "e38caf0785b448357fd0495e61f4e5a8"
