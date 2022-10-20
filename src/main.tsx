@@ -6,8 +6,7 @@ import {jsx} from "hono/jsx"
 import {cors} from "hono/cors"
 import { handler as render_image } from "./cc/render_image";
 
-import {add} from "../native/pkg"
-// import wasm from "../cc-conv/pkg/cc_conv_bg.wasm"
+import {useNativeCode} from "./mei_native"
 
 interface Env {
 
@@ -34,7 +33,9 @@ app.get("/wasm/add/:a/:b", async (c) => {
     let a = parseInt(c.req.param("a"))
     let b = parseInt(c.req.param("b"))
 
-    return c.text(add(a, b).toString())
+    const native = await useNativeCode()
+
+    return c.text(native.add(a, b).toString())
 })
 
 app.get("/ws", async ({req}) => {
