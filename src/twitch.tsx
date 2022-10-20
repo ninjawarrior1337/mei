@@ -18,11 +18,11 @@ setup({sheet, theme: {
     }
 }})
 
-const treelarGradient = tw`bg-gradient-to-r from-muse via-treelar to-treelar bg-clip-text text-transparent`
+const mei = tw`bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent`
 
 const Root = () => (
     <div class={tw`grid place-items-center w-screen h-screen bg-trueGray-800`}>
-        <h1 class={tw` font-extrabold text-8xl text-center ${treelarGradient}`}>Hello Cloudflare</h1>
+        <h1 class={tw` font-extrabold text-8xl text-center ${mei} select-none border-blue-300`}>Mei</h1>
     </div>
 )
 

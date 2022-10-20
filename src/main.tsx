@@ -4,6 +4,7 @@ import { SSR } from "./twitch";
 
 import {jsx} from "hono/jsx"
 import {cors} from "hono/cors"
+import { handler as render_image } from "./cc/render_image";
 
 interface Env {
 
@@ -23,6 +24,8 @@ app.get("/idol", async (c) => {
     await LLUtils.setup()
     return c.json(LLUtils.getBirthdayIdol())
 })
+
+app.get("/cc/image", render_image)
 
 app.get("/ws", async ({req}) => {
     const upgradeHeader = req.headers.get("Upgrade")
