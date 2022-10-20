@@ -22,7 +22,7 @@ jobs:
           override: true
       - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - run: wasm-pack build --target web native
-      - run: npm ci
+      - run: npm i
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
