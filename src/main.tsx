@@ -35,6 +35,10 @@ app.get("/wasm/add/:a/:b", async (c) => {
 
     const native = await useNativeCode()
 
+    let i = new native.CCImage()
+
+    i.
+
     return c.text(native.add(a, b).toString())
 })
 
