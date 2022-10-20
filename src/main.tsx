@@ -5,6 +5,9 @@ import { SSR } from "./twitch";
 import {jsx} from "hono/jsx"
 import {cors} from "hono/cors"
 
+import {add} from "../native/pkg"
+// import wasm from "../cc-conv/pkg/cc_conv_bg.wasm"
+
 interface Env {
 
 }
@@ -22,6 +25,13 @@ app.get("/", async (c) => {
 app.get("/idol", async (c) => {
     await LLUtils.setup()
     return c.json(LLUtils.getBirthdayIdol())
+})
+
+app.get("/wasm/add/:a/:b", async (c) => {
+    let a = parseInt(c.req.param("a"))
+    let b = parseInt(c.req.param("b"))
+
+    return c.text(add(a, b).toString())
 })
 
 app.get("/ws", async ({req}) => {
