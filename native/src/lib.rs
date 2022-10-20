@@ -9,16 +9,22 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-extern {
-    fn alert(s: &str);
-}
-
-#[wasm_bindgen]
-pub fn greet() {
-    alert("Hello, cc-conv!");
-}
-
-#[wasm_bindgen]
 pub fn add(a: i32, b: i32) -> i32 {
     a+b
+}
+
+#[wasm_bindgen]
+pub async fn load_data_from_url(url: &str) -> String {
+    utils::set_panic_hook();
+
+    let res = reqwest::get(url).await;
+
+    match res {
+        Ok(v) => {
+            let b = base64::encode_config(v.bytes().await.unwrap(), base64::STANDARD);
+
+            format!("data:text/html;base64,{}", b)
+        },
+        Err(e) => e.to_string()
+    }
 }

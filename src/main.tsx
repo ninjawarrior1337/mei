@@ -38,6 +38,18 @@ app.get("/wasm/add/:a/:b", async (c) => {
     return c.text(native.add(a, b).toString())
 })
 
+app.get("/wasm/get/:url", async (c) => {
+    const native = await useNativeCode()
+
+    const t = await native.load_data_from_url("https://mei.treelar.xyz")
+
+    return c.html(
+        <iframe style="width: 100%; height: 100%;" src={t}></iframe>
+    )
+
+    return c.redirect(t, 301)
+})
+
 app.get("/ws", async ({req}) => {
     const upgradeHeader = req.headers.get("Upgrade")
     if(!upgradeHeader || upgradeHeader !== "websocket") {
