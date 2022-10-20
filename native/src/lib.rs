@@ -14,7 +14,7 @@ pub fn add(a: i32, b: i32) -> i32 {
 }
 
 #[wasm_bindgen]
-pub async fn load_data_from_url(url: &str) -> String {
+pub async fn load_data_from_url(url: &str) -> Result<String, JsValue> {
     utils::set_panic_hook();
 
     let res = reqwest::get(url).await;
@@ -23,8 +23,8 @@ pub async fn load_data_from_url(url: &str) -> String {
         Ok(v) => {
             let b = base64::encode_config(v.bytes().await.unwrap(), base64::STANDARD);
 
-            format!("data:text/html;base64,{}", b)
+            Ok(format!("data:text/html;base64,{}", b))
         },
-        Err(e) => e.to_string()
+        Err(e) => Err(e.to_string().into())
     }
 }
