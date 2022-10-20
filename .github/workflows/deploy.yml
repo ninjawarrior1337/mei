@@ -21,7 +21,7 @@ jobs:
           target: wasm32-unknown-unknown
           override: true
       - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-      - run: wasm-pack --target web native
+      - run: wasm-pack build --target web native
       - run: npm ci
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
