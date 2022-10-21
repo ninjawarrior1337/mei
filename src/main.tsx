@@ -27,15 +27,33 @@ app.get("/idol", async (c) => {
     return c.json(LLUtils.getBirthdayIdol())
 })
 
-app.get("/cc/image", render_image)
-
-app.get("/wasm/add/:a/:b", async (c) => {
-    let a = parseInt(c.req.param("a"))
-    let b = parseInt(c.req.param("b"))
+app.get("/cc/img/:width/:height", async (c) => {
+    let w = parseInt(c.req.param("width"))
+    let h = parseInt(c.req.param("height"))
 
     const native = await useNativeCode()
 
-    return c.text(native.add(a, b).toString())
+    try {
+        const res = await fetch("https://s.pacn.ws/1500/10q/love-live-sunshine-nesoberi-plush-hanamaru-kunikida-fantastic-de-661227.1.jpg?v=qoaxm4&width=1500")
+        const view = new Uint8Array(await res.arrayBuffer())
+        const img = native.render_bytes(view, w, h)
+
+        let width = img.width
+        let palette_map: Map<number, number> = new Map()
+
+        for(let [k, v] of img.palette.entries()) {
+            palette_map.set(1 << k, v)
+        }
+        let palette = Object.fromEntries(palette_map)
+
+        let pixels = Object.values(img.pix_data).map((v) => 1 << v)
+
+        console.log(pixels.length)
+
+        return c.json({width, palette, pixels})
+    } catch (e) {
+        return c.json(e)
+    }
 })
 
 app.get("/wasm/get/:url", async (c) => {
