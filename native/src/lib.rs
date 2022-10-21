@@ -15,7 +15,7 @@ pub fn add(a: i32, b: i32) -> i32 {
 
 pub mod computer_craft {
     use exoquant::{convert_to_indexed, ditherer, optimizer::KMeans};
-    use image::{DynamicImage, GenericImageView};
+    use image::{DynamicImage};
     use wasm_bindgen::prelude::*;
 
     use crate::utils;
@@ -60,7 +60,7 @@ pub mod computer_craft {
 
     pub fn process_image(img: DynamicImage, nwidth: u32, nheight: u32) -> CCImage {
 
-        let resized = img.resize_exact(nwidth, nheight, image::imageops::FilterType::Lanczos3).to_rgb8();
+        let resized = img.resize_exact(nwidth, nheight, image::imageops::FilterType::Nearest).to_rgb8();
 
         let pix_orig = resized.pixels().map(|p| color_conv(p)).collect::<Vec<_>>();
 
@@ -88,21 +88,5 @@ pub mod computer_craft {
         let img = image::load_from_memory(image_bytes).map_err(|_| "failed to load image")?;
 
         return Ok(process_image(img, width, height));
-    }
-}
-
-#[wasm_bindgen]
-pub async fn load_data_from_url(url: &str) -> Result<String, JsValue> {
-    utils::set_panic_hook();
-
-    let res = reqwest::get(url).await;
-
-    match res {
-        Ok(v) => {
-            let b = base64::encode_config(v.bytes().await.unwrap(), base64::STANDARD);
-
-            Ok(format!("data:text/html;base64,{}", b))
-        }
-        Err(e) => Err(e.to_string().into()),
     }
 }

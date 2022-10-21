@@ -34,7 +34,7 @@ app.get("/cc/img/:width/:height", async (c) => {
     const native = await useNativeCode()
 
     try {
-        const res = await fetch("https://s.pacn.ws/1500/10q/love-live-sunshine-nesoberi-plush-hanamaru-kunikida-fantastic-de-661227.1.jpg?v=qoaxm4&width=1500")
+        const res = await fetch("https://www.gravatar.com/avatar/55255e7fac560d2630297f3d2e90b40f?s=32")
         const view = new Uint8Array(await res.arrayBuffer())
         const img = native.render_bytes(view, w, h)
 
@@ -54,19 +54,6 @@ app.get("/cc/img/:width/:height", async (c) => {
     } catch (e) {
         return c.json(e)
     }
-})
-
-app.get("/wasm/get/:url", async (c) => {
-    const native = await useNativeCode()
-
-    return native.load_data_from_url(`https://${c.req.param("url")}`)
-        .then(r => {
-            return c.html(
-                <iframe style="width: 100%; height: 100%;" src={r}></iframe>
-            )
-        }, r => {
-            return c.text(r)
-        })
 })
 
 app.get("/ws", async ({req}) => {
