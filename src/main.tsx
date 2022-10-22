@@ -27,7 +27,7 @@ app.get("/idol", async (c) => {
     return c.json(LLUtils.getBirthdayIdol())
 })
 
-app.use("/cc/img/*", cache({cacheName: "mei-cc-img", cacheControl: "max-age=86400", wait: true}))
+// app.use("/cc/img/*", cache({cacheName: "mei-cc-img", cacheControl: "max-age=86400", wait: true}))
 app.get("/cc/img/:width/:height", async (c) => {
     let w = parseInt(c.req.param("width"))
     let h = parseInt(c.req.param("height"))
