@@ -4,7 +4,7 @@ import { SSR } from "./twitch";
 
 import {jsx} from "hono/jsx"
 import {cors} from "hono/cors"
-import { handler as render_image } from "./cc/render_image";
+import {cache} from "hono/cache"
 
 import {useNativeCode} from "./mei_native"
 
@@ -27,14 +27,20 @@ app.get("/idol", async (c) => {
     return c.json(LLUtils.getBirthdayIdol())
 })
 
+app.use("/cc/img/*", cache({cacheName: "mei-cc-img", cacheControl: "max-age=86400", wait: true}))
 app.get("/cc/img/:width/:height", async (c) => {
     let w = parseInt(c.req.param("width"))
     let h = parseInt(c.req.param("height"))
 
-    const native = await useNativeCode()
+    let img_url =  c.req.query("url")
+    if(!img_url) {
+        return c.text("please spcify an image url", 400)
+    }
 
     try {
-        const res = await fetch("https://www.gravatar.com/avatar/55255e7fac560d2630297f3d2e90b40f?s=32")
+        const native = await useNativeCode()
+
+        const res = await fetch(img_url)
         const view = new Uint8Array(await res.arrayBuffer())
         const img = native.render_bytes(view, w, h)
 
@@ -47,8 +53,6 @@ app.get("/cc/img/:width/:height", async (c) => {
         let palette = Object.fromEntries(palette_map)
 
         let pixels = Object.values(img.pix_data).map((v) => 1 << v)
-
-        console.log(pixels.length)
 
         return c.json({width, palette, pixels})
     } catch (e) {
