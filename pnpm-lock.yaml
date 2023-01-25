@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cloudflare/workers-types': ^3.14.1
+  '@cloudflare/workers-types': ^4.20221111.1
   hono: ^2.3.1
   twind: ^0.16.17
   typescript: ^4.7.4
@@ -11,13 +11,13 @@ dependencies:
   twind: 0.16.17_typescript@4.8.4
 
 devDependencies:
-  '@cloudflare/workers-types': 3.17.0
+  '@cloudflare/workers-types': 4.20221111.1
   typescript: 4.8.4
 
 packages:
 
-  /@cloudflare/workers-types/3.17.0:
-    resolution: {integrity: sha512-u0cUQ4ntWFFwn5jx0ETa2ItvwvfOMjyaKF2fX2vFVujrSgNES/PnvRzPAhdt9CMYAMidInm0MGkIjxHRsFBaeg==}
+  /@cloudflare/workers-types/4.20221111.1:
+    resolution: {integrity: sha512-BNV2wN8V6Zduvo7UzxcdjBbLQ906D2KhS804PDufLgx/sanGJCHVJMOIaLvS/b61JKtot1U7P/l1fjrjZ7/E3A==}
     dev: true
 
   /csstype/3.1.1:
