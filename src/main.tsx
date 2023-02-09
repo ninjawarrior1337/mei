@@ -4,7 +4,6 @@ import { SSR } from "./twitch";
 
 import {jsx} from "hono/jsx"
 import {cors} from "hono/cors"
-import {cache} from "hono/cache"
 
 import {useNativeCode} from "./mei_native"
 
