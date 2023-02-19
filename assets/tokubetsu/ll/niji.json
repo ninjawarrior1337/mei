@@ -1,0 +1,49 @@
+{
+    "niji": [
+        {
+            "name": "Asaka Karin",
+            "birthday": "6/29",
+            "color": "#034099"
+        },
+        {
+            "name": "Emma Verde",
+            "birthday": "2/5",
+            "color": "#6cbd61"
+        },
+        {
+            "name": "Konoe Kanata",
+            "birthday": "12/16",
+            "color": "#ba8ec1"
+        },
+        {
+            "name": "Miyashita Ai",
+            "birthday": "5/30",
+            "color": "#eb6001"
+        },
+        {
+            "name": "Nakasu Kasumi",
+            "birthday": "1/23",
+            "color": "#f7f064"
+        },
+        {
+            "name": "Osaka Shizuku",
+            "birthday": "4/3",
+            "color": "#81c6ef"
+        },
+        {
+            "name": "Tennoji Rina",
+            "birthday": "11/13",
+            "color": "#a8aaa9"
+        },
+        {
+            "name": "Uehara Ayumu",
+            "birthday": "3/1",
+            "color": "#f0939e"
+        },
+        {
+            "name": "Yuki Setsuna",
+            "color": "#da363f",
+            "birthday": "8/8"
+        }
+    ]
+}

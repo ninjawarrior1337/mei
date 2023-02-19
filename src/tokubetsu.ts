@@ -1,21 +1,33 @@
-interface Idol {
+import {kessoku} from "../assets/tokubetsu/bocchi/kessoku.json"
+import {sip} from "../assets/tokubetsu/ll/sip.json"
+import {sunshine} from "../assets/tokubetsu/ll/sunshine.json"
+import {niji} from "../assets/tokubetsu/ll/niji.json"
+import {superstar} from "../assets/tokubetsu/ll/superstar.json"
+
+interface Charater {
     name: string,
     color: string,
     birthday: string
 }
 
-class LoveLiveUtils {
+const TOKUBETSU_DATA = {
+    kessoku,
+    sip,
+    sunshine,
+    niji,
+    superstar
+} as Record<string, Charater[]>
+
+class Tokubetsu {
     private TODAY: Date | undefined
-    private idols = [] as Idol[]
-    private IdolDataUrl = "https://gist.githubusercontent.com/ninjawarrior1337/2a51ec53e679550a1d254a465ee79c11/raw"
-    public async setup() {
+    public characters: Charater[] = []
+    public setup() {
         this.TODAY = new Date(Date.now())
-        if (this.idols.length > 0) {
+        this.TODAY.setDate(21)
+        if (this.characters.length > 0) {
             return 
         }
-        let r = await fetch(this.IdolDataUrl, {cf: {cacheEverything: true, cacheTtl: 5*60}})
-        let j: any = await r.json()
-        this.idols = j.idols
+        this.characters = Object.values(TOKUBETSU_DATA).flat()
     }
 
     private getTZDayMonth(tz: string): [string, string] {
@@ -31,7 +43,7 @@ class LoveLiveUtils {
         return [month, day]
     }
 
-    private checkBirthday(i: Idol, tz: string): boolean {
+    private checkBirthday(i: Charater, tz: string): boolean {
         const [iMonth, iDay] = i.birthday.split("/")
         const [tMonth, tDay] = this.getTZDayMonth(tz)
         if(tMonth == iMonth && tDay == iDay) {
@@ -40,15 +52,15 @@ class LoveLiveUtils {
         return false;
     }
 
-    public getBirthdayIdol(): Idol | null {
+    public getBirthdayIdol(): Charater | null {
         //Check JP birthday first
-        for(var i of this.idols) {
+        for(var i of this.characters) {
             if(this.checkBirthday(i, "Asia/Tokyo")) {
                 return i
             }
         }
         //Check US birthdays if no JP birthdays exist
-        for(var i of this.idols) {
+        for(var i of this.characters) {
             if(this.checkBirthday(i, "America/Los_Angeles")) {
                 return i
             }
@@ -57,4 +69,4 @@ class LoveLiveUtils {
     }
 }
 
-export const LLUtils = new LoveLiveUtils()
+export const TokubetsuUtils = new Tokubetsu()

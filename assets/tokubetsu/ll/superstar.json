@@ -1,0 +1,49 @@
+{
+    "superstar": [
+        {
+            "name": "Shibuya Kanon",
+            "color": "#ff7f27",
+            "birthday": "5/1"
+        },
+        {
+            "name": "Tang Keke",
+            "color": "#a0fff9",
+            "birthday": "7/17"
+        },
+        {
+            "name": "Arashi Chisato",
+            "color": "#ff6e90",
+            "birthday": "2/25"
+        },
+        {
+            "name": "Heanna Sumire",
+            "birthday": "9/28",
+            "color": "#74f466"
+        },
+        {
+            "name": "Hazuki Ren",
+            "birthday": "11/24",
+            "color": "#0000a0"
+        },
+        {
+            "name": "Sakurakoji Kinako",
+            "birthday": "4/10",
+            "color": "#fff442"
+        },
+        {
+            "name": "Yoneme Mei",
+            "birthday": "10/29",
+            "color": "#ff3535"
+        },
+        {
+            "name": "Wakana Shiki",
+            "birthday": "6/17",
+            "color": "#b2ffdd"
+        },
+        {
+            "name": "Onitsuka Natsumi",
+            "birthday": "8/7",
+            "color": "#ff51c4"
+        }
+    ]
+}

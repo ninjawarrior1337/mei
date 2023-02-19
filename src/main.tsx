@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { LLUtils } from "./LoveLive";
+import { TokubetsuUtils } from "./tokubetsu";
 import { SSR } from "./twitch";
 
 import {jsx} from "hono/jsx"
@@ -21,9 +21,15 @@ app.get("/", async (c) => {
     return c.html(<SSR cf={c.req.cf}></SSR>)
 })
 
-app.get("/idol", async (c) => {
-    await LLUtils.setup()
-    return c.json(LLUtils.getBirthdayIdol())
+app.get("/tokubetsu", async (c) => {
+    await TokubetsuUtils.setup()
+    return c.json(TokubetsuUtils.getBirthdayIdol())
+})
+
+app.get("/tokubetsu/all", async (c) => {
+    await TokubetsuUtils.setup()
+    c.pretty(true, 4)
+    return c.json(TokubetsuUtils.characters)
 })
 
 // app.use("/cc/img/*", cache({cacheName: "mei-cc-img", cacheControl: "max-age=86400", wait: true}))

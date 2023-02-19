@@ -1,0 +1,49 @@
+{
+    "sip": [
+        {
+            "name": "Kousaka Honoka",
+            "color": "#e2732d",
+            "birthday": "8/3"
+        },
+        {
+            "name": "Minami Kotori",
+            "color": "#8c9395",
+            "birthday": "9/12"
+        },
+        {
+            "name": "Sonoda Umi",
+            "color": "#1660A5",
+            "birthday": "3/15"
+        },
+        {
+            "name": "Koizumi Hanayo",
+            "color": "#54ab48",
+            "birthday": "1/17"
+        },
+        {
+            "name": "Hoshizora Rin",
+            "color": "#f1c51f",
+            "birthday": "11/1"
+        },
+        {
+            "name": "Nishikino Maki",
+            "color": "#cc3554",
+            "birthday": "4/19"
+        },
+        {
+            "name": "Yazawa Nico",
+            "color": "#d54e8d",
+            "birthday": "7/22"
+        },
+        {
+            "name": "Ayase Eli",
+            "color": "#36b3dd",
+            "birthday": "10/21"
+        },
+        {
+            "name": "Toujou Nozomi",
+            "color": "#744791",
+            "birthday": "6/9"
+        }
+    ]
+}

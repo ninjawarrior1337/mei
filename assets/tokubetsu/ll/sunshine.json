@@ -1,0 +1,59 @@
+{
+    "sunshine": [
+        {
+            "name": "Takami Chika",
+            "color": "#F0A20B",
+            "birthday": "8/1"
+        },
+        {
+            "name": "Sakurauchi Riko",
+            "color": "#E9A9E8",
+            "birthday": "9/19"
+        },
+        {
+            "name": "Matsuura Kanan",
+            "color": "#13E8AE",
+            "birthday": "2/10"
+        },
+        {
+            "name": "Kurosawa Dia",
+            "color": "#F23B4C",
+            "birthday": "1/1"
+        },
+        {
+            "name": "Watanabe You",
+            "color": "#49B9F9",
+            "birthday": "4/17"
+        },
+        {
+            "name": "Tsushima Yoshiko",
+            "color": "#898989",
+            "birthday": "7/13"
+        },
+        {
+            "name": "Kunikida Hanamaru",
+            "color": "#E6D617",
+            "birthday": "3/4"
+        },
+        {
+            "name": "Ohara Mari",
+            "color": "#AE58EB",
+            "birthday": "6/13"
+        },
+        {
+            "name": "Kurosawa Ruby",
+            "color": "#FB75E4",
+            "birthday": "9/21"
+        },
+        {
+            "name": "Kazuno Leah",
+            "color": "#dde6ed",
+            "birthday": "12/12"
+        },
+        {
+            "name": "Kazuno Sarah",
+            "color": "#adc7ec",
+            "birthday": "5/4"
+        }
+    ]
+}

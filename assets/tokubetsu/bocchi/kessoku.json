@@ -1,0 +1,24 @@
+{
+    "kessoku": [
+        {
+            "name": "Hitori Gotoh",
+            "birthday": "2/21",
+            "color": "#ff2191"
+        },
+        {
+            "name": "Nijika Ijichi",
+            "birthday": "5/29",
+            "color": "#ffb400"
+        },
+        {
+            "name": "Ryo Yamada",
+            "birthday": "9/18",
+            "color": "#04d1e0"
+        },
+        {
+            "name": "Ikuyo Kita",
+            "birthday": "4/21",
+            "color": "#ff4637"
+        }
+    ]
+}
