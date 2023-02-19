@@ -23,7 +23,6 @@ class Tokubetsu {
     public characters: Charater[] = []
     public setup() {
         this.TODAY = new Date(Date.now())
-        this.TODAY.setDate(21)
         if (this.characters.length > 0) {
             return 
         }
