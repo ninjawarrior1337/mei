@@ -18,7 +18,7 @@ const TOKUBETSU_DATA = {
     superstar
 } as Record<string, Charater[]>
 
-class Tokubetsu {
+export class Tokubetsu {
     private TODAY: Date | undefined
     public characters: Charater[] = []
     public setup() {
@@ -51,6 +51,10 @@ class Tokubetsu {
         return false;
     }
 
+    public getBirthdayIdols(): Charater[] {
+        return this.characters.filter((c) => this.checkBirthday(c, "Asia/Tokyo") || this.checkBirthday(c, "America/Los_Angeles"))
+    }
+
     public getBirthdayIdol(): Charater | null {
         //Check JP birthday first
         for(var i of this.characters) {
@@ -67,5 +71,3 @@ class Tokubetsu {
         return null
     }
 }
-
-export const TokubetsuUtils = new Tokubetsu()

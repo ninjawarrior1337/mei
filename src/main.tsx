@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { TokubetsuUtils } from "./tokubetsu";
+import { Tokubetsu } from "./tokubetsu";
 import { SSR } from "./twitch";
 
 import {jsx} from "hono/jsx"
@@ -21,16 +21,35 @@ app.get("/", async (c) => {
     return c.html(<SSR cf={c.req.cf}></SSR>)
 })
 
-app.get("/tokubetsu", async (c) => {
-    await TokubetsuUtils.setup()
-    return c.json(TokubetsuUtils.getBirthdayIdol())
+const tokubetsu = new Hono<{"Variables": {
+    tokubetsu: Tokubetsu
+}}>()
+
+tokubetsu.use("*", async (c, next) => {
+    const tk = new Tokubetsu()
+    tk.setup()
+    c.set("tokubetsu", tk)
+    await next()
 })
 
-app.get("/tokubetsu/all", async (c) => {
-    await TokubetsuUtils.setup()
-    c.pretty(true, 4)
-    return c.json(TokubetsuUtils.characters)
+tokubetsu.get("/", async (c) => {
+    const tk = c.get("tokubetsu")
+    return c.json(tk.getBirthdayIdol())
 })
+
+tokubetsu.get("/index", async (c) => {
+    const tk = c.get("tokubetsu")
+    c.pretty(true, 4)
+    return c.json(tk.characters)
+})
+
+tokubetsu.get("/all", async (c) => {
+    const tk = c.get("tokubetsu")
+    c.pretty(true, 4)
+    return c.json(tk.getBirthdayIdols())
+})
+
+app.route("/tokubetsu", tokubetsu)
 
 // app.use("/cc/img/*", cache({cacheName: "mei-cc-img", cacheControl: "max-age=86400", wait: true}))
 app.get("/cc/img/:width/:height", async (c) => {
