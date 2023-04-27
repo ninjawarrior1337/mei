@@ -44,6 +44,16 @@
             "name": "Onitsuka Natsumi",
             "birthday": "8/7",
             "color": "#ff51c4"
+        },
+        {
+            "name": "Onitsuka Tomari",
+            "birthday": "12/28",
+            "color": "#60bbc7"
+        },
+        {
+            "name": "Wien Margaret",
+            "birthday": "1/20",
+            "color": "#ba99bc"
         }
     ]
 }

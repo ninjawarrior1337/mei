@@ -30,11 +30,10 @@ const Twitch = () => {
     <div></div>
 }
 
-export const SSR = ({cf}: {cf: IncomingRequestCfProperties|undefined}) => {
+export const SSR = () => {
     sheet.reset()
 
     const rootBody = Root()
-    console.log(cf)
     const twitchBody = Twitch()
 
     const st = getStyleTag(sheet)

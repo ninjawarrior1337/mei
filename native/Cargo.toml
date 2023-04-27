@@ -1,8 +1,8 @@
 [package]
 name = "mei-native"
 version = "0.1.0"
-authors = ["ninjawarrior1337 <t.rothled@gmail.com>"]
-edition = "2018"
+authors = ["ninjawarrior1337 <me@treelar.xyz>"]
+edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -27,6 +27,8 @@ image = { version = "0.24.4", default-features=false, features = ["jpeg", "png",
 wasm-bindgen-futures = "0.4.33"
 exoquant = "0.2.0"
 js-sys = "0.3.60"
+
+hatsuon = "*"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.13"

@@ -6,19 +6,23 @@ import {jsx} from "hono/jsx"
 import {cors} from "hono/cors"
 
 import {useNativeCode} from "./mei_native"
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { appRouter } from "./trpc/router";
+import { createContext } from "./trpc/context";
 
-interface Env {
-
+export type Env = {
+    mei_kv: KVNamespace
+    DB: D1Database
 }
 
-const app = new Hono()
+const app = new Hono<{Bindings: Env}>()
 
 app.use("/*", cors({
     origin: "*"
 }))
 
 app.get("/", async (c) => {
-    return c.html(<SSR cf={c.req.cf}></SSR>)
+    return c.html(<SSR></SSR>)
 })
 
 const tokubetsu = new Hono<{"Variables": {
@@ -50,6 +54,15 @@ tokubetsu.get("/all", async (c) => {
 })
 
 app.route("/tokubetsu", tokubetsu)
+
+app.all("/trpc/*", (ctx) => {
+    return fetchRequestHandler({
+        endpoint: "/trpc",
+        req: ctx.req as unknown as Request,
+        router: appRouter,
+        createContext: (opts) => createContext(opts, ctx.env),
+    })
+})
 
 // app.use("/cc/img/*", cache({cacheName: "mei-cc-img", cacheControl: "max-age=86400", wait: true}))
 app.get("/cc/img/:width/:height", async (c) => {

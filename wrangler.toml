@@ -4,6 +4,15 @@ compatibility_date = "2022-07-19"
 main = "src/main.tsx"
 account_id = "e38caf0785b448357fd0495e61f4e5a8"
 
+kv_namespaces = [
+  { binding = "mei_kv", id = "fd98c41fff4f40158256539d6037015e", preview_id = "ed3f3504be974bd598480d60d7ebee9a"}
+]
+
+[[ d1_databases ]]
+binding = "DB"
+database_name = "mei"
+database_id = "b51db976-37cb-49d1-afbc-593c4b6ddbad"
+
 rules = [
   { type = "CompiledWasm", globs = ["**/*.wasm"], fallthrough = true }
 ]
