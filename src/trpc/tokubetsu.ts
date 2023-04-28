@@ -1,4 +1,4 @@
-import { t } from "./router";
+import { t } from "./trpc";
 
 export const tokubetsuRouter = t.router({
     birthdayToday: t.procedure.query(({ctx}) => {

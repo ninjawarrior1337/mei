@@ -2,22 +2,22 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@trpc/server':
-    specifier: ^10.18.0
-    version: 10.18.0
+    specifier: ^10.21.2
+    version: 10.21.2
   hono:
-    specifier: ^3.1.4
-    version: 3.1.4
+    specifier: ^3.1.6
+    version: 3.1.6
   twind:
     specifier: ^0.16.19
-    version: 0.16.19(typescript@5.0.2)
+    version: 0.16.19(typescript@5.0.4)
   zod:
     specifier: ^3.21.4
     version: 3.21.4
 
 devDependencies:
   '@cloudflare/workers-types':
-    specifier: ^4.20230321.0
-    version: 4.20230321.0
+    specifier: ^4.20230404.0
+    version: 4.20230404.0
   dotenv:
     specifier: ^16.0.3
     version: 16.0.3
@@ -25,13 +25,13 @@ devDependencies:
     specifier: 0.17.4
     version: 0.17.4
   typescript:
-    specifier: ^5.0.2
-    version: 5.0.2
+    specifier: ^5.0.4
+    version: 5.0.4
 
 packages:
 
-  /@cloudflare/workers-types@4.20230321.0:
-    resolution: {integrity: sha512-zyRFz9AUS0tbg3/kJ+3zxvp9fl/O9yOJlChih/o86hhOqRMcZVbWefYAvFPidRvYUHM5YTG1wjU1bF9FFckRVg==}
+  /@cloudflare/workers-types@4.20230404.0:
+    resolution: {integrity: sha512-fG3oaJX1icfsGV74nhx1+AC6opvZsGqnpx6FvrcVqQaBmCNkjKNqDRFrpasXWFiOIvysBXHKQAzsAJkBZgnM+A==}
     dev: true
 
   /@esbuild/android-arm@0.15.18:
@@ -52,8 +52,8 @@ packages:
     dev: true
     optional: true
 
-  /@trpc/server@10.18.0:
-    resolution: {integrity: sha512-nVMqdDIF9YLOeC3g6RdAvdCPqkHFjpshSqZGThZ+fyjiWSUXj2ZKCduhJFnY77TjtgODojeaaghmzcnjxb+Onw==}
+  /@trpc/server@10.21.2:
+    resolution: {integrity: sha512-4v9FIOQw1J06OLICLj0M5jmrVF1XCEyu1FXvZA4wB/om1q18NWENXaLjcisgvV/h2gBxx8iN00t9/bE9jn2+fw==}
     dev: false
 
   /balanced-match@1.0.2:
@@ -92,8 +92,8 @@ packages:
     engines: {node: ^12.20.0 || >=14}
     dev: true
 
-  /csstype@3.1.1:
-    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+  /csstype@3.1.2:
+    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: false
 
   /d@1.0.1:
@@ -475,8 +475,8 @@ packages:
     resolution: {integrity: sha512-2bsegYkkHO+h/9MGbn6KWcE45cHZgPANo5LXF7EvWdT0yT2EguSVO1nDgU5c8+ZOPwp2vMNa7YFsJhVcDR9Sdg==}
     dev: true
 
-  /hono@3.1.4:
-    resolution: {integrity: sha512-uboRdKRHF+LtNrprlrgX+PPeSGiXHHML4VzUTVLSyFYnctfB2E93TgbAQskMNjrOufG1fI8zXRx3we93SnYITw==}
+  /hono@3.1.6:
+    resolution: {integrity: sha512-ugC7YbuyATZChp+SxfstiavvTCqENjvSiTiDAkbAOP20pJ58N4kXcbDi93SwZrvMFA2VVx1veMYHrsvUY9hcVA==}
     engines: {node: '>=16.0.0'}
     dev: false
 
@@ -572,7 +572,7 @@ packages:
       next-tick: 1.1.0
     dev: true
 
-  /twind@0.16.19(typescript@5.0.2):
+  /twind@0.16.19(typescript@5.0.4):
     resolution: {integrity: sha512-/9H7I/Xzji6UZ+x1V8/llcQSAI0bINqpZtvAqqTzuU/qAdzRCnrpaME8x57k8tUu2KbosjSQE85sSwcLBGD1DQ==}
     engines: {node: '>=10.13'}
     peerDependencies:
@@ -581,10 +581,10 @@ packages:
       typescript:
         optional: true
     dependencies:
-      csstype: 3.1.1
+      csstype: 3.1.2
       htmlparser2: 6.1.0
       style-vendorizer: 2.2.3
-      typescript: 5.0.2
+      typescript: 5.0.4
     dev: false
 
   /type@1.2.0:
@@ -595,8 +595,8 @@ packages:
     resolution: {integrity: sha512-dzlvlNlt6AXU7EBSfpAscydQ7gXB+pPGsPnfJnZpiNJBDj7IaJzQlBZYGdEi4R9HmPdBv2XmWJ6YUtoTa7lmCw==}
     dev: true
 
-  /typescript@5.0.2:
-    resolution: {integrity: sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==}
+  /typescript@5.0.4:
+    resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
     engines: {node: '>=12.20'}
     hasBin: true
 

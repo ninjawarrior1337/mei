@@ -2,10 +2,10 @@
   "name": "mei",
   "version": "0.0.0",
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230321.0",
+    "@cloudflare/workers-types": "^4.20230404.0",
     "dotenv": "^16.0.3",
     "drizzle-kit": "0.17.4",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.4"
   },
   "private": true,
   "scripts": {
@@ -15,8 +15,8 @@
     "deploy": "wrangler publish"
   },
   "dependencies": {
-    "@trpc/server": "^10.18.0",
-    "hono": "^3.1.4",
+    "@trpc/server": "^10.21.2",
+    "hono": "^3.1.6",
     "twind": "^0.16.19",
     "zod": "^3.21.4"
   }
