@@ -32,7 +32,7 @@ export const hatsuon = t.router({
         .query(({input, ctx}) => {
             const pitches = new Uint8Array(input.pitches)
             const img = ctx.native.hatsuon.render(input.str, pitches)
-            const base64String = btoa(String.fromCharCode(...img));
+            const base64String = Buffer.from(img).toString('base64')
             const dataUrl = `data:image/png;base64,${base64String}`
             return dataUrl
         })

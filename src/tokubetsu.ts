@@ -1,8 +1,8 @@
-import {kessoku} from "../assets/tokubetsu/bocchi/kessoku.json"
-import {sip} from "../assets/tokubetsu/ll/sip.json"
-import {sunshine} from "../assets/tokubetsu/ll/sunshine.json"
-import {niji} from "../assets/tokubetsu/ll/niji.json"
-import {superstar} from "../assets/tokubetsu/ll/superstar.json"
+import bocchi from "../assets/tokubetsu/bocchi/kessoku.json"
+import llSIP from "../assets/tokubetsu/ll/sip.json"
+import llS from "../assets/tokubetsu/ll/sunshine.json"
+import llN from "../assets/tokubetsu/ll/niji.json"
+import llSS from "../assets/tokubetsu/ll/superstar.json"
 
 interface Charater {
     name: string,
@@ -11,11 +11,11 @@ interface Charater {
 }
 
 const TOKUBETSU_DATA = {
-    kessoku,
-    sip,
-    sunshine,
-    niji,
-    superstar
+    kessoku: bocchi.kessoku,
+    sip: llSIP.sip,
+    sunshine: llS.sunshine,
+    niji: llN.niji,
+    superstar: llSS.superstar
 } as Record<string, Charater[]>
 
 export class Tokubetsu {
