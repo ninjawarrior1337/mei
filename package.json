@@ -8,7 +8,6 @@
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4"
   },
-  "private": true,
   "main": "mod.ts",
   "scripts": {
     "native-build": "wasm-pack build native",

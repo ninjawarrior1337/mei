@@ -1,14 +1,14 @@
-import { t } from "./trpc";
+import { procedure, router } from "./trpc";
 
-export const tokubetsuRouter = t.router({
-    birthdayToday: t.procedure.query(({ctx}) => {
+export const tokubetsuRouter = router({
+    birthdayToday: procedure.query(({ctx}) => {
         return ctx.tokubetsu.getBirthdayIdol()
     }),
 
-    birthdaysToday: t.procedure.query(({ctx}) => {
+    birthdaysToday: procedure.query(({ctx}) => {
         return ctx.tokubetsu.getBirthdayIdols()
     }),
-    allCharacters: t.procedure.query(({ctx}) => {
+    allCharacters: procedure.query(({ctx}) => {
         return ctx.tokubetsu.characters
     })
 })

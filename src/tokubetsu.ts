@@ -4,11 +4,11 @@ import llS from "../assets/tokubetsu/ll/sunshine.json"
 import llN from "../assets/tokubetsu/ll/niji.json"
 import llSS from "../assets/tokubetsu/ll/superstar.json"
 
-interface Charater {
+type Character = {
     name: string,
     color: string,
     birthday: string
-}
+};
 
 const TOKUBETSU_DATA = {
     kessoku: bocchi.kessoku,
@@ -16,11 +16,11 @@ const TOKUBETSU_DATA = {
     sunshine: llS.sunshine,
     niji: llN.niji,
     superstar: llSS.superstar
-} as Record<string, Charater[]>
+} as Record<string, Character[]>
 
 export class Tokubetsu {
     private TODAY: Date | undefined
-    public characters: Charater[] = []
+    public characters: Character[] = []
     public setup() {
         this.TODAY = new Date(Date.now())
         if (this.characters.length > 0) {
@@ -42,7 +42,7 @@ export class Tokubetsu {
         return [month, day]
     }
 
-    private checkBirthday(i: Charater, tz: string): boolean {
+    private checkBirthday(i: Character, tz: string): boolean {
         const [iMonth, iDay] = i.birthday.split("/")
         const [tMonth, tDay] = this.getTZDayMonth(tz)
         if(tMonth == iMonth && tDay == iDay) {
@@ -51,11 +51,11 @@ export class Tokubetsu {
         return false;
     }
 
-    public getBirthdayIdols(): Charater[] {
+    public getBirthdayIdols(): Character[] {
         return this.characters.filter((c) => this.checkBirthday(c, "Asia/Tokyo") || this.checkBirthday(c, "America/Los_Angeles"))
     }
 
-    public getBirthdayIdol(): Charater | null {
+    public getBirthdayIdol(): Character | null {
         //Check JP birthday first
         for(var i of this.characters) {
             if(this.checkBirthday(i, "Asia/Tokyo")) {
