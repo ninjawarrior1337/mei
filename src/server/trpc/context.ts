@@ -1,7 +1,7 @@
 import { inferAsyncReturnType } from '@trpc/server';
 import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
-import { Tokubetsu } from '../tokubetsu';
-import { useNativeCode } from '../mei_native';
+import { Tokubetsu } from "~/tokubetsu"
+import { useNativeCode } from '~/mei_native';
 
 interface CreateInnerContextOptions extends Partial<FetchCreateContextFnOptions> {}
 

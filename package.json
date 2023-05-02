@@ -17,8 +17,12 @@
   "dependencies": {
     "@astrojs/tailwind": "^3.1.2",
     "@astrojs/vercel": "^3.2.5",
+    "@astrojs/vue": "^2.1.1",
+    "@trpc/client": "^10.23.0",
     "@trpc/server": "^10.21.2",
     "astro": "^2.3.3",
+    "vite-plugin-wasm": "^3.2.2",
+    "vue": "^3.2.47",
     "zod": "^3.21.4"
   }
 }
