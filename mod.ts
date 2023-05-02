@@ -1,1 +1,3 @@
-export type * from "~/server/trpc/router"
+import type {AppRouter} from "~/server/trpc/router"
+
+export {AppRouter}
