@@ -1,0 +1,36 @@
+---
+import Main from "~/layouts/main.astro"
+import type {inferRouterOutputs} from "@trpc/server"
+import { trpc } from "~/trpc"
+import type { AppRouter } from "~/server/trpc/router"
+
+let res: inferRouterOutputs<AppRouter>["cc"]["render"] | null = null
+
+try {
+    const data = await Astro.request.formData()
+    const url = data.get("url") as string
+    const width = parseInt(data.get("width") as string)
+    const height = parseInt(data.get("height") as string)
+
+    res = await trpc.cc.render.query({
+        url, 
+        width, 
+        height
+    })
+} catch {
+
+}
+
+---
+
+<Main>
+
+    {JSON.stringify(res)}
+
+    <form method="get">
+        <input name="url" type="url" required/>
+        <input name="width" type="number" required/>
+        <input name="height" type="number" required/>
+        <button type="submit">Render</button>
+    </form>
+</Main>

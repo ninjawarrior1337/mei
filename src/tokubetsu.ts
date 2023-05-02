@@ -4,7 +4,7 @@ import llS from "../assets/tokubetsu/ll/sunshine.json"
 import llN from "../assets/tokubetsu/ll/niji.json"
 import llSS from "../assets/tokubetsu/ll/superstar.json"
 
-type Character = {
+export type Character = {
     name: string,
     color: string,
     birthday: string
