@@ -15,4 +15,4 @@ echo "Starting native build"
 pnpm native-build
 
 echo "Starting frontend build"
-next build
+astro build
