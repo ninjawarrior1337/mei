@@ -9,6 +9,7 @@
     "typescript": "^5.0.4"
   },
   "private": true,
+  "main": "mod.ts",
   "scripts": {
     "native-build": "wasm-pack build native",
     "dev": "astro dev",
