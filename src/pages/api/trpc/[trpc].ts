@@ -4,6 +4,11 @@ import { createContext } from "~/server/trpc/context";
 import { appRouter } from '~/server/trpc/router';
 
 export const all: APIRoute = (opts) => {
+    if (opts.request.method === 'OPTIONS') {
+        return new Response(null, {
+            status: 200
+        })
+    }
     return fetchRequestHandler({
         router: appRouter,
         createContext,
