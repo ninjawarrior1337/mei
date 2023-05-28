@@ -1,5 +1,5 @@
 mod utils;
-mod computer_craft;
+pub mod computer_craft;
 
 use wasm_bindgen::prelude::*;
 

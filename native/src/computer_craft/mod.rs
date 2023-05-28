@@ -1,8 +1,10 @@
+pub mod craftos;
+
 use exoquant::{convert_to_indexed, ditherer, optimizer::KMeans};
 use image::DynamicImage;
 use wasm_bindgen::prelude::*;
 
-use crate::utils;
+use super::utils;
 
 fn color_conv(c: &image::Rgb<u8>) -> exoquant::Color {
     exoquant::Color {
@@ -13,6 +15,7 @@ fn color_conv(c: &image::Rgb<u8>) -> exoquant::Color {
     }
 }
 
+#[derive(Debug)]
 #[wasm_bindgen]
 pub struct CCImage {
     pub width: usize,
@@ -54,7 +57,7 @@ fn process_image(img: DynamicImage, nwidth: u32, nheight: u32) -> CCImage {
         img.width() as usize,
         16,
         &KMeans,
-        &ditherer::None,
+        &ditherer::FloydSteinberg::new(),
     );
 
     let pal_new = pal
