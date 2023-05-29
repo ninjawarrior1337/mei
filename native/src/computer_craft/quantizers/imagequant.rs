@@ -56,7 +56,8 @@ impl Quantizer for ImageQuant {
         }).collect::<Vec<u32>>();
 
         CCImage {
-            width: nwidth as usize,
+            width: nwidth,
+            height: nheight,
             palette: pal,
             pix_data: buf
         }

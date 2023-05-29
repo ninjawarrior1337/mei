@@ -1,5 +1,5 @@
-pub mod craftos;
 pub mod quantizers;
+pub mod serializers;
 
 use wasm_bindgen::prelude::*;
 
@@ -7,9 +7,13 @@ use super::utils;
 
 #[derive(Debug)]
 #[wasm_bindgen]
+/// An intermediary representation of a ComputerCraft image.
 pub struct CCImage {
-    pub width: usize,
+    pub width: u32,
+    pub height: u32,
+    /// The palette of the image, as an array of 16 24-bit RGB values.
     palette: Vec<u32>,
+    /// The pixel data of the image, as an array of 8-bit indices into the palette.
     pix_data: Vec<u8>,
 }
 
@@ -19,7 +23,8 @@ impl CCImage {
     pub fn new() -> Self {
         CCImage {
             width: 0,
-            palette: vec![21, 23, 31, 3, 231, 13],
+            height: 0,
+            palette: vec![],
             pix_data: vec![],
         }
     }
@@ -38,7 +43,7 @@ impl CCImage {
 pub fn render_bytes(image_bytes: &[u8], width: u32, height: u32) -> Result<CCImage, JsValue> {
     utils::set_panic_hook();
     let img = image::load_from_memory(image_bytes).map_err(|_| "failed to load image")?;
-    let e = quantizers::exoquant::Exoquant;
+    let e = quantizers::exoquant::Exoquant::new();
     let cc = quantizers::Quantizer::quantize(&e, img, width, height);
 
     return Ok(cc);

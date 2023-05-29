@@ -1,8 +1,10 @@
-use base64::{Engine as _, engine::general_purpose};
-use bytes::{BytesMut, BufMut};
+use base64::{engine::general_purpose, Engine as _};
+use bytes::{BufMut, BytesMut};
 use image::DynamicImage;
 
-use super::quantizers::Quantizer;
+use crate::computer_craft::CCImage;
+
+use super::{super::quantizers::Quantizer, CCImageSerializer};
 
 #[derive(Copy, Clone, Debug)]
 #[repr(u8)]
@@ -26,7 +28,7 @@ pub struct RawModePacket<'a> {
     /// Hexadecimal-encoded CRC32 checksum of encoded payload (8 bytes)
     checksum: String,
     /// New line/line feed character (ASCII code 10) - this MAY be preceded by a carriage return (ASCII code 13)
-    end: u8
+    end: u8,
 }
 
 impl<'a> RawModePacket<'a> {
@@ -37,7 +39,7 @@ impl<'a> RawModePacket<'a> {
             len: format!("{:04x}", data.serialize().len()),
             data,
             checksum: format!("{:08x}", checksum),
-            end: '\n' as u8
+            end: '\n' as u8,
         }
     }
 }
@@ -123,39 +125,44 @@ fn rle_encode(arr: &[u8]) -> Vec<u8> {
     out
 }
 
-pub fn render_frame(image: DynamicImage, nwidth: u32, nheight: u32, q: impl Quantizer) -> String {
-    let mut data = TermData {
-        pix_data_raw: vec![' '.try_into().unwrap(); (nwidth * nheight) as usize],
-        background_pairs_raw: vec![0; (nwidth * nheight) as usize],
-        palette: [0; 48],
-    };
+pub struct RawModeSerializer;
 
-    let img = q.quantize(image, nwidth, nheight);
-    
-    img.pix_data.iter().enumerate().for_each(|(i, c)| {
-        data.background_pairs_raw[i] = c << 4;
-        data.background_pairs_raw[i] += c & 0x0f;
-    });
+impl CCImageSerializer for RawModeSerializer {
+    fn serialize(&self, cc: &CCImage) -> Vec<u8> {
+        let width = cc.width;
+        let height = cc.height;
 
-    img.palette.iter().enumerate().for_each(|(i, c)| {
-        data.palette[i * 3] = (c >> 16) as u8;
-        data.palette[i * 3 + 1] = (c >> 8) as u8;
-        data.palette[i * 3 + 2] = (c & 0x0000ff) as u8;
-    });
+        let mut data = TermData {
+            pix_data_raw: vec![' '.try_into().unwrap(); (width * height) as usize],
+            background_pairs_raw: vec![0; (width * height) as usize],
+            palette: [0; 48],
+        };
 
-    let tdpd = TermContentsPacketData {
-        mode: GfxMode::Text,
-        is_blinking: 0,
-        width: nwidth as u16,
-        height: nheight as u16,
-        cursor_x: [0, 0],
-        cursor_y: [0, 0],
-        grayscale: 0,
-        reserved: [0; 3],
-        data,
-    };
+        cc.pix_data.iter().enumerate().for_each(|(i, c)| {
+            data.background_pairs_raw[i] = c << 4;
+            data.background_pairs_raw[i] += c & 0x0f;
+        });
 
-    let packet = RawModePacket::new(&tdpd);
+        cc.palette.iter().enumerate().for_each(|(i, c)| {
+            data.palette[i * 3] = (c >> 16) as u8;
+            data.palette[i * 3 + 1] = (c >> 8) as u8;
+            data.palette[i * 3 + 2] = (c & 0x0000ff) as u8;
+        });
 
-    packet.serialize()
+        let tdpd = TermContentsPacketData {
+            mode: GfxMode::Text,
+            is_blinking: 0,
+            width: width as u16,
+            height: height as u16,
+            cursor_x: [0, 0],
+            cursor_y: [0, 0],
+            grayscale: 0,
+            reserved: [0; 3],
+            data,
+        };
+
+        let packet = RawModePacket::new(&tdpd);
+
+        packet.serialize().into()
+    }
 }

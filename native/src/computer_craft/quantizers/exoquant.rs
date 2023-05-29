@@ -1,14 +1,22 @@
 use exoquant::{convert_to_indexed, ditherer, optimizer::KMeans};
+use image::imageops::FilterType::{self, Nearest};
 
 use crate::computer_craft::CCImage;
 
 use super::Quantizer;
 
-pub struct Exoquant;
+pub struct Exoquant {
+    resize_strategy: FilterType
+}
 
 impl Exoquant {
     pub fn new() -> Exoquant {
-        Exoquant{}
+        Self::new_with_opts(None)
+    }
+    pub fn new_with_opts(resize: Option<FilterType>) -> Exoquant {
+        Exoquant{
+            resize_strategy: resize.unwrap_or(Nearest)
+        }
     }
     fn color_conv(c: &image::Rgb<u8>) -> exoquant::Color {
         exoquant::Color {
@@ -28,7 +36,7 @@ impl Quantizer for Exoquant {
         nheight: u32,
     ) -> crate::computer_craft::CCImage {
         let resized = img
-            .resize_exact(nwidth, nheight, image::imageops::FilterType::Nearest)
+            .resize_exact(nwidth, nheight, self.resize_strategy)
             .to_rgb8();
 
         let pix_orig = resized
@@ -55,7 +63,8 @@ impl Quantizer for Exoquant {
             .collect::<Vec<_>>();
 
         return CCImage {
-            width: resized.width() as usize,
+            width: nwidth,
+            height: nheight,
             palette: pal_new,
             pix_data: pix,
         };
