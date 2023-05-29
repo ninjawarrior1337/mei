@@ -2,7 +2,7 @@ use base64::{Engine as _, engine::general_purpose};
 use bytes::{BytesMut, BufMut};
 use image::DynamicImage;
 
-use super::process_image;
+use super::quantizers::Quantizer;
 
 #[derive(Copy, Clone, Debug)]
 #[repr(u8)]
@@ -123,14 +123,14 @@ fn rle_encode(arr: &[u8]) -> Vec<u8> {
     out
 }
 
-pub fn render_frame(image: DynamicImage, nwidth: u32, nheight: u32) -> String {
+pub fn render_frame(image: DynamicImage, nwidth: u32, nheight: u32, q: impl Quantizer) -> String {
     let mut data = TermData {
         pix_data_raw: vec![' '.try_into().unwrap(); (nwidth * nheight) as usize],
         background_pairs_raw: vec![0; (nwidth * nheight) as usize],
         palette: [0; 48],
     };
 
-    let img = process_image(image, nwidth, nheight);
+    let img = q.quantize(image, nwidth, nheight);
     
     img.pix_data.iter().enumerate().for_each(|(i, c)| {
         data.background_pairs_raw[i] = c << 4;

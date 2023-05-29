@@ -6,5 +6,6 @@ pkg/
 wasm-pack.log
 
 *.png
+*.jpeg
 /frame_data
 *.32
