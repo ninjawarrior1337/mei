@@ -1,10 +1,9 @@
 use base64::{engine::general_purpose, Engine as _};
 use bytes::{BufMut, BytesMut};
-use image::DynamicImage;
 
 use crate::computer_craft::CCImage;
 
-use super::{super::quantizers::Quantizer, CCImageSerializer};
+use super::{CCImageSerializer};
 
 #[derive(Copy, Clone, Debug)]
 #[repr(u8)]
@@ -125,10 +124,11 @@ fn rle_encode(arr: &[u8]) -> Vec<u8> {
     out
 }
 
-pub struct RawModeSerializer;
+/// Serializes into a simple raw mode packet, use `RawModeSerializer` for a more complete implementation
+pub struct RawModePacketSerializer;
 
-impl CCImageSerializer for RawModeSerializer {
-    fn serialize(&self, cc: &CCImage) -> Vec<u8> {
+impl CCImageSerializer for RawModePacketSerializer {
+    fn serialize(&self, cc: &crate::computer_craft::CCImage) -> Vec<u8> {
         let width = cc.width;
         let height = cc.height;
 
@@ -163,6 +163,6 @@ impl CCImageSerializer for RawModeSerializer {
 
         let packet = RawModePacket::new(&tdpd);
 
-        packet.serialize().into()
+        packet.serialize().into_bytes()
     }
 }

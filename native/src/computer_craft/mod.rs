@@ -1,7 +1,11 @@
 pub mod quantizers;
 pub mod serializers;
 
+use image::DynamicImage;
+use rayon::prelude::IntoParallelIterator;
 use wasm_bindgen::prelude::*;
+
+use self::{quantizers::{Quantizer, exoquant::Exoquant}, serializers::CCImageSerializer};
 
 use super::utils;
 
@@ -40,11 +44,58 @@ impl CCImage {
     }
 }
 
+pub struct ImageRenderer<Q, S>
+where Q: Quantizer,
+      S: CCImageSerializer {
+    width: u32,
+    height: u32,
+    image: Option<DynamicImage>,
+    quantizer: Option<Q>,
+    serializer: Option<S>
+}
+
+impl<Q, S> ImageRenderer<Q, S>
+where Q: Quantizer,
+      S: CCImageSerializer {
+    pub fn new(width: u32, height: u32) -> ImageRenderer<Q, S> {
+        ImageRenderer {
+            width,
+            height,
+            image: None,
+            quantizer: None,
+            serializer: None
+        }
+    }
+
+    pub fn image(mut self, image: DynamicImage) -> ImageRenderer<Q, S> {
+        self.image = Some(image);
+        self
+    }
+
+    pub fn quantizer(mut self, quantizer: Q) -> ImageRenderer<Q, S> {
+        self.quantizer = Some(quantizer);
+        self
+    }
+
+    pub fn serializer(mut self, serializer: S) -> ImageRenderer<Q, S> {
+        self.serializer = Some(serializer);
+        self
+    }
+
+    pub fn render(self) -> Vec<u8> {
+        let q = self.quantizer.unwrap();
+        let s = self.serializer.unwrap();
+
+        let cc = q.quantize(self.image.unwrap(), self.width, self.height);
+        let out = s.serialize(&cc);
+        out
+    }
+}
+
 pub fn render_bytes(image_bytes: &[u8], width: u32, height: u32) -> Result<CCImage, JsValue> {
     utils::set_panic_hook();
     let img = image::load_from_memory(image_bytes).map_err(|_| "failed to load image")?;
-    let e = quantizers::exoquant::Exoquant::new();
-    let cc = quantizers::Quantizer::quantize(&e, img, width, height);
+    let cc = Exoquant::new().quantize(img, width, height);
 
     return Ok(cc);
 }

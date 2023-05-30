@@ -9,3 +9,4 @@ wasm-pack.log
 *.jpeg
 /frame_data
 *.32
+*.bimg
