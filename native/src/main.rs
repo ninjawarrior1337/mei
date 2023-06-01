@@ -32,11 +32,11 @@ fn write_rawmode() {
         .progress()
         .filter_map(|p| p.as_ref().ok())
         .map(|d| {
-            let img = image::open(d.path()).unwrap();
+            let i = image::open(d.path()).unwrap();
             ImageRenderer::new(WIDTH, HEIGHT)
-                .image(img)
+                .image(i)
                 .quantizer(ImageQuant::new_with_opts(Some(10), Some(image::imageops::FilterType::Nearest)))
-                .serializer(BimgSerializer)
+                .serializer(RawModePacketSerializer)
                 .render()
         })
         .collect();
@@ -80,6 +80,6 @@ fn write_bimg() {
 }
 
 fn main() {
-    // write_rawmode();
-    write_bimg();
+    write_rawmode();
+    // write_bimg();
 }
