@@ -1,30 +1,25 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use mei_native::computer_craft::quantizers::{exoquant, imagequant, Quantizer};
+use mei_native::computer_craft::{quantizers::{exoquant::{self, Exoquant}, imagequant::{self, ImageQuant}, Quantizer}, ImageRenderer, serializers::rawmode::RawModePacketSerializer};
 
 fn raw_bocchi_bench(c: &mut Criterion) {
     let image_data = image::open("./frame_data/bocchi/frame-0015.jpg").unwrap();
     c.bench_function("raw_bocchi exo", |b| {
         b.iter(|| {
-            Quantizer::quantize(
-                &exoquant::Exoquant::new(),
-                image_data.clone(),
-                51,
-                19,
-            )
+            ImageRenderer::new(51, 19)
+                .image(image_data.clone())
+                .quantizer(Exoquant::new())
+                .serializer(RawModePacketSerializer)
+                .render()
         });
     });
 
     c.bench_function("raw_bocchi imagequant", |b| {
         b.iter(|| {
-            Quantizer::quantize(
-                &imagequant::ImageQuant::new_with_opts(
-                    Some(10),
-                    Some(image::imageops::FilterType::Nearest),
-                ),
-                image_data.clone(),
-                51,
-                19,
-            )
+            ImageRenderer::new(51, 19)
+                .image(image_data.clone())
+                .quantizer(ImageQuant::new_with_opts(Some(10), None))
+                .serializer(RawModePacketSerializer)
+                .render()
         })
     });
 }
