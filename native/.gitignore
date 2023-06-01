@@ -10,3 +10,4 @@ wasm-pack.log
 /frame_data
 *.32
 *.bimg
+*.webm
