@@ -1,7 +1,7 @@
 use base64::{engine::general_purpose, Engine as _};
 use bytes::{BufMut, BytesMut};
 
-use crate::computer_craft::CCImage;
+
 
 use super::{CCImageSerializer};
 

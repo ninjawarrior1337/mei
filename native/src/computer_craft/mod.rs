@@ -2,7 +2,7 @@ pub mod quantizers;
 pub mod serializers;
 
 use image::DynamicImage;
-use rayon::prelude::IntoParallelIterator;
+
 use wasm_bindgen::prelude::*;
 
 use self::{quantizers::{Quantizer, exoquant::Exoquant}, serializers::CCImageSerializer};

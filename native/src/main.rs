@@ -3,15 +3,14 @@ use std::{
     io::Write,
 };
 
-use indicatif::{ParallelProgressIterator, ProgressIterator, ProgressStyle};
+use indicatif::{ParallelProgressIterator, ProgressIterator};
 use rayon::prelude::*;
 
 use mei_native::computer_craft::{
     quantizers::{
-        imagequant::{self, ImageQuant},
-        Quantizer,
+        imagequant::{ImageQuant},
     },
-    serializers::{self, rawmode::RawModePacketSerializer, CCImageSerializer, bimg::BimgSerializer}, ImageRenderer,
+    serializers::{rawmode::RawModePacketSerializer, bimg::BimgSerializer}, ImageRenderer,
 };
 
 const WIDTH: u32 = 51;
