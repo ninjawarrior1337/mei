@@ -1,7 +1,7 @@
 use exoquant::{convert_to_indexed, ditherer, optimizer::KMeans};
 use image::imageops::FilterType::{self, Nearest};
 
-use crate::computer_craft::CCImage;
+use crate::CCImage;
 
 use super::Quantizer;
 
@@ -34,7 +34,7 @@ impl Quantizer for Exoquant {
         img: image::DynamicImage,
         nwidth: u32,
         nheight: u32,
-    ) -> crate::computer_craft::CCImage {
+    ) -> crate::CCImage {
         let resized = img
             .resize_exact(nwidth, nheight, self.resize_strategy)
             .to_rgb8();

@@ -1,7 +1,7 @@
 use image::{GenericImageView, imageops::FilterType};
 use imagequant::{Attributes, RGBA};
 
-use crate::computer_craft::{quantizers::Quantizer, CCImage};
+use crate::{quantizers::Quantizer, CCImage};
 
 pub struct ImageQuant {
     speed: i32,
@@ -24,7 +24,7 @@ impl Quantizer for ImageQuant {
         img: image::DynamicImage,
         nwidth: u32,
         nheight: u32,
-    ) -> crate::computer_craft::CCImage {
+    ) -> crate::CCImage {
         let scaled_image = img.resize_exact(nwidth, nheight, self.resize_strategy);
         let pixels = scaled_image
             .pixels()
