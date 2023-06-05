@@ -102,7 +102,7 @@ where T: Iterator<Item = i8> {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::{Read, BufReader, Write}, fmt::format};
+    use std::{fs::File, io::{Read, BufReader, Write}};
     use super::*;
 
     #[test]

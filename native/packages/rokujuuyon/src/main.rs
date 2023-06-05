@@ -2,8 +2,7 @@ use std::{
     cmp::Reverse,
     collections::BinaryHeap,
     fs::{self, File},
-    io::{stdin, BufRead, BufReader, Cursor, Read, Write},
-    os::unix::prelude::FileExt,
+    io::{stdin, BufRead, BufReader, Read, Write},
     path::PathBuf,
     sync::{Arc, Mutex},
     thread::spawn,
@@ -14,7 +13,7 @@ use anyhow::Result;
 use clap::{Parser, Subcommand};
 
 use crossbeam_channel::unbounded;
-use image::{DynamicImage, ImageFormat};
+use image::{DynamicImage};
 use indicatif::{ParallelProgressIterator, ProgressIterator};
 use rayon::prelude::*;
 
@@ -231,17 +230,17 @@ fn main() -> Result<()> {
             }
         }
         Commands::File {
-            input,
-            output,
-            width,
-            height,
+            input: _,
+            output: _,
+            width: _,
+            height: _,
         } => {}
         Commands::Folder {
-            input,
-            fps,
-            output,
-            width,
-            height,
+            input: _,
+            fps: _,
+            output: _,
+            width: _,
+            height: _,
         } => {}
     };
 
