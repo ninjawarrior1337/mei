@@ -1,5 +1,6 @@
 pub mod quantizers;
 pub mod serializers;
+pub mod dfpwm;
 
 use image::DynamicImage;
 
