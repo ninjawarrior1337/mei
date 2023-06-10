@@ -1,0 +1,16 @@
+[package]
+name = 'ninjawarrior1337/rokujuuyon'
+version = '0.0.1'
+description = 'An image converter for the ComputerCraft mod.'
+
+# See more keys and definitions at https://docs.wasmer.io/ecosystem/wapm/manifest
+
+[dependencies]
+
+[[module]]
+name = 'rokujuuyon'
+source = 'target/wasm32-wasmer-wasi/release/rokujuuyon.wasm'
+
+[[command]]
+name = 'rokujuuyon'
+module = 'rokujuuyon'

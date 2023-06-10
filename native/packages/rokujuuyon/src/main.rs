@@ -13,7 +13,7 @@ use anyhow::Result;
 use clap::{Parser, Subcommand};
 
 use crossbeam_channel::unbounded;
-use image::{DynamicImage};
+use image::DynamicImage;
 use indicatif::{ParallelProgressIterator, ProgressIterator};
 use rayon::prelude::*;
 
@@ -23,17 +23,13 @@ use rokujuuyon::{
     ImageRenderer,
 };
 
-const WIDTH: u32 = 51;
-const HEIGHT: u32 = 19;
-const FPS: f32 = 23.98;
-
 fn write_rawmode() {
     let paths = fs::read_dir("./frame_data/bocchi").unwrap();
 
     let mut file = File::create("./bocchi.32").unwrap();
 
     write!(file, "32Vid 1.1\n").unwrap();
-    write!(file, "{}\n", FPS).unwrap();
+    write!(file, "{}\n", 23.98).unwrap();
 
     let frames: Vec<Vec<u8>> = paths
         .collect::<Vec<_>>()
@@ -42,7 +38,7 @@ fn write_rawmode() {
         .filter_map(|p| p.as_ref().ok())
         .map(|d| {
             let i = image::open(d.path()).unwrap();
-            ImageRenderer::new(WIDTH, HEIGHT)
+            ImageRenderer::new(51, 19)
                 .image(i)
                 .quantizer(ImageQuant::new_with_opts(
                     Some(10),
@@ -73,7 +69,7 @@ fn write_bimg() {
         .filter_map(|p| p.as_ref().ok())
         .map(|d| {
             let img = image::open(d.path()).unwrap();
-            ImageRenderer::new(WIDTH, HEIGHT)
+            ImageRenderer::new(51, 19)
                 .image(img)
                 .quantizer(ImageQuant::new_with_opts(
                     Some(10),
@@ -92,7 +88,7 @@ fn write_bimg() {
 
     write!(&mut file, "{},\n", frames).unwrap();
     write!(file, "animation = true,\n").unwrap();
-    write!(file, "secondsPerFrame = {},\n", 1.0 / FPS).unwrap();
+    write!(file, "secondsPerFrame = {},\n", 1.0 / 23.98).unwrap();
     write!(file, "}}").unwrap();
 }
 
@@ -230,21 +226,63 @@ fn main() -> Result<()> {
             }
         }
         Commands::File {
-            input: _,
-            output: _,
-            width: _,
-            height: _,
-        } => {}
+            input,
+            output,
+            width,
+            height,
+        } => {
+            let in_img = image::open(input).unwrap();
+
+            let mut output_file = File::create(output).unwrap();
+
+            write!(output_file, "32Vid 1.1\n").unwrap();
+            write!(output_file, "0\n").unwrap();
+
+            let conv_data = ImageRenderer::new(width, height)
+                .quantizer(ImageQuant::default())
+                .serializer(RawModePacketSerializer)
+                .image(in_img)
+                .render();
+
+            output_file.write(&conv_data).unwrap();
+        }
         Commands::Folder {
-            input: _,
-            fps: _,
-            output: _,
-            width: _,
-            height: _,
-        } => {}
+            input,
+            fps,
+            output,
+            width,
+            height,
+        } => {
+            let paths = fs::read_dir(input).unwrap();
+
+            let mut file = File::create(output).unwrap();
+
+            write!(file, "32Vid 1.1\n").unwrap();
+            write!(file, "{}\n", fps).unwrap();
+
+            let frames: Vec<Vec<u8>> = paths
+                .collect::<Vec<_>>()
+                .par_iter()
+                .progress()
+                .filter_map(|p| p.as_ref().ok())
+                .map(|d| {
+                    let i = image::open(d.path()).unwrap();
+                    ImageRenderer::new(width, height)
+                        .image(i)
+                        .quantizer(ImageQuant::new_with_opts(
+                            Some(10),
+                            Some(image::imageops::FilterType::Nearest),
+                        ))
+                        .serializer(RawModePacketSerializer)
+                        .render()
+                })
+                .collect();
+
+            frames.iter().for_each(|frame| {
+                file.write(frame).unwrap();
+            });
+        }
     };
 
     Ok(())
-    // write_rawmode();
-    // write_bimg();
 }

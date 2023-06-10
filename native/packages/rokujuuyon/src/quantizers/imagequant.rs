@@ -8,6 +8,12 @@ pub struct ImageQuant {
     resize_strategy: FilterType
 }
 
+impl Default for ImageQuant {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl ImageQuant {
     pub fn new() -> ImageQuant {
         Self::new_with_opts(None, None)
