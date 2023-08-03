@@ -11,6 +11,7 @@
   "exports": {
     ".": "./mod.ts"
   },
+  "main": "mod.ts",
   "scripts": {
     "native-build": "wasm-pack build native",
     "dev": "astro dev",
