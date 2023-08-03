@@ -2,7 +2,10 @@ use image::DynamicImage;
 
 use super::CCImage;
 
+#[cfg(feature = "exoquant")]
 pub mod exoquant;
+
+#[cfg(feature = "imagequant")]
 pub mod imagequant;
 
 pub trait Quantizer {

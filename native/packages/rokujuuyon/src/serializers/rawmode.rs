@@ -1,8 +1,6 @@
 use base64::{engine::general_purpose, Engine as _};
 use bytes::{BufMut, BytesMut};
 
-
-
 use super::{CCImageSerializer};
 
 #[derive(Copy, Clone, Debug)]
@@ -128,7 +126,7 @@ fn rle_encode(arr: &[u8]) -> Vec<u8> {
 pub struct RawModePacketSerializer;
 
 impl CCImageSerializer for RawModePacketSerializer {
-    fn serialize(&self, cc: &crate::computer_craft::CCImage) -> Vec<u8> {
+    fn serialize(&self, cc: &crate::CCImage) -> Vec<u8> {
         let width = cc.width;
         let height = cc.height;
 

@@ -2,7 +2,7 @@ use std::{fmt::Write};
 
 
 
-use crate::computer_craft::CCImage;
+use crate::CCImage;
 
 use super::CCImageSerializer;
 

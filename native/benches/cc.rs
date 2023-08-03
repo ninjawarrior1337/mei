@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use mei_native::computer_craft::{quantizers::{exoquant::{self, Exoquant}, imagequant::{self, ImageQuant}, Quantizer}, ImageRenderer, serializers::rawmode::RawModePacketSerializer};
+use rokujuuyon::{quantizers::{exoquant::{self, Exoquant}, imagequant::{self, ImageQuant}, Quantizer}, ImageRenderer, serializers::rawmode::RawModePacketSerializer};
 
 fn raw_bocchi_bench(c: &mut Criterion) {
     let image_data = image::open("./frame_data/bocchi/frame-0015.jpg").unwrap();

@@ -1,3 +1,8 @@
+[workspace]
+members = [
+    "packages/rokujuuyon"
+]
+
 [package]
 name = "mei-native"
 version = "0.1.0"
@@ -10,32 +15,19 @@ crate-type = ["cdylib", "rlib"]
 [features]
 default = ["console_error_panic_hook", "wee_alloc"]
 
+[workspace.dependencies]
+image = { version = "0.24.4", default-features=false, features = ["jpeg", "png", "webp"], workspace = true }
+
 [dependencies]
 wasm-bindgen = "0.2.63"
-
-# The `console_error_panic_hook` crate provides better debugging of panics by
-# logging them with `console.error`. This is great for development, but requires
-# all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
-# code size when deploying.
 console_error_panic_hook = { version = "0.1.6", optional = true }
-
-# `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
-# compared to the default allocator's ~10K. It is slower than the default
-# allocator, however.
 wee_alloc = { version = "0.4.5", optional = true }
-image = { version = "0.24.4", default-features=false, features = ["jpeg", "png", "webp"] }
 wasm-bindgen-futures = "0.4.33"
-exoquant = "0.2.0"
 js-sys = "0.3.60"
+image = {workspace = true}
 
 hatsuon = "*"
-base64 = "0.21.2"
-crc32fast = "1.3.2"
-bytes = "1.4.0"
-rayon = "1.7.0"
-indicatif = { version = "0.17.3", features = ["rayon"] }
-imagequant = { version = "4.2.0", default-features = false }
-itertools = "0.10.5"
+rokujuuyon = { path = "./packages/rokujuuyon", default-features = false, features = ["imagequant"]}
 
 [dev-dependencies]
 criterion = "0.5.1"
