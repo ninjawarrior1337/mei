@@ -46,11 +46,14 @@ devDependencies:
   drizzle-kit:
     specifier: 0.17.4
     version: 0.17.4
+  husky:
+    specifier: ^8.0.3
+    version: 8.0.3
   tailwindcss:
-    specifier: ^3.3.3
+    specifier: ^3.3.2
     version: 3.3.3
   typescript:
-    specifier: ^5.1.6
+    specifier: ^5.0.4
     version: 5.1.6
 
 packages:
@@ -2679,6 +2682,12 @@ packages:
     resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
     engines: {node: '>=14.18.0'}
     dev: false
+
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
 
   /ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}

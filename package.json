@@ -5,6 +5,7 @@
     "@types/node": "^18.17.1",
     "dotenv": "^16.3.1",
     "drizzle-kit": "0.17.4",
+    "husky": "^8.0.3",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4"
   },
@@ -16,7 +17,8 @@
     "native-build": "wasm-pack build native",
     "dev": "astro dev",
     "build": "./build.sh",
-    "build:types": "tsc --project tsconfig.types.json"
+    "build:types": "tsc --project tsconfig.types.json",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@astrojs/tailwind": "^3.1.3",
