@@ -11,11 +11,11 @@ dependencies:
     specifier: ^2.1.1
     version: 2.1.1(@babel/core@7.21.5)(astro@2.3.3)(vite@4.3.3)(vue@3.2.47)
   '@trpc/client':
-    specifier: ^10.23.0
-    version: 10.23.0(@trpc/server@10.23.0)
+    specifier: ^10.36.0
+    version: 10.36.0(@trpc/server@10.37.1)
   '@trpc/server':
-    specifier: ^10.23.0
-    version: 10.23.0
+    specifier: ^10.37.1
+    version: 10.37.1
   astro:
     specifier: ^2.3.3
     version: 2.3.3(@types/node@18.16.3)
@@ -830,16 +830,16 @@ packages:
       picomatch: 2.3.1
     dev: false
 
-  /@trpc/client@10.23.0(@trpc/server@10.23.0):
-    resolution: {integrity: sha512-7hTh9OjVIx4Co3kUyIu94SjbUIuS2WKl3E5BMseYbNOHfeY5rqwkCsw0N5EHWszhIVttUMDE0oCf10tNhYEq1A==}
+  /@trpc/client@10.36.0(@trpc/server@10.37.1):
+    resolution: {integrity: sha512-Qj1T4vwhEEeLgXCUHFT7S5fqytkNYAudHwZtooEZ+NN+yN/a5oDZy1wd5D/gkY9y+nO8JCSgc7P5KhLjwzdeVw==}
     peerDependencies:
       '@trpc/server': 10.23.0
     dependencies:
-      '@trpc/server': 10.23.0
+      '@trpc/server': 10.37.1
     dev: false
 
-  /@trpc/server@10.23.0:
-    resolution: {integrity: sha512-0CPfGZK3v3gfAL8ylV5vDJVBQtPp47EB4Vgx6WItSXmwYQlLC39ZC3gkZ4I5cGpQKl4l3QrNNeUvIcse4hlMxA==}
+  /@trpc/server@10.37.1:
+    resolution: {integrity: sha512-r3VeA319/braYMBIzj+XLgLKQ9lJSVglvPvP9HUv4kr5w6Y5grQMxMcExhTiZWltE9bnSJHKtBBzHafOo7KC8A==}
     dev: false
 
   /@types/babel__core@7.20.0:
