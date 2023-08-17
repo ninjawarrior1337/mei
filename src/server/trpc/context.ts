@@ -8,7 +8,6 @@ interface CreateInnerContextOptions extends Partial<FetchCreateContextFnOptions>
 export async function createContextInner(opts?: CreateInnerContextOptions) {
     const tokubetsu = new Tokubetsu()
     const native = await useNativeCode()
-    tokubetsu.setup()
     return {
         native,
         tokubetsu
