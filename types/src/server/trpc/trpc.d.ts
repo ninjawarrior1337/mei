@@ -2,7 +2,7 @@ export declare const t: {
     _config: import("@trpc/server").RootConfig<{
         ctx: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("../../tokubetsu").Tokubetsu;
         };
         meta: object;
@@ -13,7 +13,7 @@ export declare const t: {
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("../../tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -22,7 +22,7 @@ export declare const t: {
         }>;
         _ctx_out: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("../../tokubetsu").Tokubetsu;
         };
         _input_in: typeof import("@trpc/server").unsetMarker;
@@ -35,7 +35,7 @@ export declare const t: {
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("../../tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -43,7 +43,7 @@ export declare const t: {
             transformer: import("@trpc/server").DefaultDataTransformer;
         }>;
         _ctx_out: {};
-        _input_out: unknown;
+        _input_out: typeof import("@trpc/server").unsetMarker;
         _input_in: unknown;
         _output_in: unknown;
         _output_out: unknown;
@@ -52,7 +52,7 @@ export declare const t: {
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("../../tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -60,7 +60,7 @@ export declare const t: {
             transformer: import("@trpc/server").DefaultDataTransformer;
         }>;
         _ctx_out: {};
-        _input_out: unknown;
+        _input_out: typeof import("@trpc/server").unsetMarker;
         _input_in: unknown;
         _output_in: unknown;
         _output_out: unknown;
@@ -69,7 +69,7 @@ export declare const t: {
     router: <TProcRouterRecord extends import("@trpc/server").ProcedureRouterRecord>(procedures: TProcRouterRecord) => import("@trpc/server").CreateRouterInner<import("@trpc/server").RootConfig<{
         ctx: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("../../tokubetsu").Tokubetsu;
         };
         meta: object;
@@ -77,11 +77,21 @@ export declare const t: {
         transformer: import("@trpc/server").DefaultDataTransformer;
     }>, TProcRouterRecord>;
     mergeRouters: typeof import("@trpc/server").mergeRouters;
+    createCallerFactory: <TRouter extends import("@trpc/server").Router<import("@trpc/server").AnyRouterDef<import("@trpc/server").RootConfig<{
+        ctx: {
+            req: Request;
+            native: typeof import("native/pkg/mei_native");
+            tokubetsu: import("../../tokubetsu").Tokubetsu;
+        };
+        meta: object;
+        errorShape: import("@trpc/server").DefaultErrorShape;
+        transformer: import("@trpc/server").DefaultDataTransformer;
+    }>, any>>>(router: TRouter) => import("@trpc/server").RouterCaller<TRouter["_def"]>;
 };
 export declare const router: <TProcRouterRecord extends import("@trpc/server").ProcedureRouterRecord>(procedures: TProcRouterRecord) => import("@trpc/server").CreateRouterInner<import("@trpc/server").RootConfig<{
     ctx: {
         req: Request;
-        native: typeof import("../../../native/pkg/mei_native");
+        native: typeof import("native/pkg/mei_native");
         tokubetsu: import("../../tokubetsu").Tokubetsu;
     };
     meta: object;
@@ -92,7 +102,7 @@ export declare const procedure: import("@trpc/server").ProcedureBuilder<{
     _config: import("@trpc/server").RootConfig<{
         ctx: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("../../tokubetsu").Tokubetsu;
         };
         meta: object;
@@ -101,7 +111,7 @@ export declare const procedure: import("@trpc/server").ProcedureBuilder<{
     }>;
     _ctx_out: {
         req: Request;
-        native: typeof import("../../../native/pkg/mei_native");
+        native: typeof import("native/pkg/mei_native");
         tokubetsu: import("../../tokubetsu").Tokubetsu;
     };
     _input_in: typeof import("@trpc/server").unsetMarker;

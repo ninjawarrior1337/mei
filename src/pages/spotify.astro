@@ -1,0 +1,117 @@
+---
+import Main from "~/layouts/main.astro";
+import { createContextInner } from "~/server/trpc/context";
+import { spotify } from "~/server/trpc/spotify";
+import { t } from "~/server/trpc/trpc";
+
+const callerFactory = t.createCallerFactory(spotify);
+const caller = callerFactory({
+  ...(await createContextInner()),
+  req: Astro.request,
+});
+
+const spotifyData = await caller.songInfo();
+const spotifyCoverData = await caller.coverInfo();
+---
+
+<Main>
+  {
+    spotifyData && (
+      <div class="background flex w-10/12 flex-col rounded-lg p-4 shadow md:w-4/12">
+        <div class="flex justify-between justify-items-center">
+          <svg
+            class="h-12 w-12 animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-disc-3"
+          >
+            <path d="M6 12c0-1.7.7-3.2 1.8-4.2" />
+            <circle cx="12" cy="12" r="2" />
+            <>
+              <circle cx="12" cy="12" r="10" />
+              <path d="M18 12c0 1.7-.7 3.2-1.8 4.2" />
+            </>
+          </svg>
+          <h1 class="my-auto text-2xl">I'm listening to...</h1>
+          <a
+            class="bg-primary-container rounded-full"
+            href={`${spotifyData.media_content_id}`}
+          >
+            <svg
+              class="primaryContainer h-12 w-12 p-2"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-square-arrow-out-up-right"
+            >
+              <path d="m21 3-9 9" />
+              <>
+                <path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6" />
+                <path d="M15 3h6v6" />
+              </>
+            </svg>
+          </a>
+        </div>
+
+        <img
+          class="mx-auto my-6 rounded shadow"
+          src={spotifyCoverData?.coverUrl}
+        />
+
+        <div class="primaryContainer inline-block max-w-fit rounded-full px-2 text-3xl font-bold">
+          {spotifyData?.media_title}
+        </div>
+        <div class="flex flex-col">
+          <div class="secondaryContainer mt-1 inline-block max-w-fit rounded-full px-2 py-1">
+            by {spotifyData?.media_artist}
+          </div>
+          <div class="tertiaryContainer inline-block max-w-fit rounded-full px-2">
+            on {spotifyData?.media_album_name}
+          </div>
+        </div>
+      </div>
+    )
+  }
+</Main>
+
+<style define:vars={spotifyCoverData?.colors.materialYou.dark || {}}>
+  .primary {
+    color: var(--onPrimary);
+  }
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  .bg-primary-container {
+    background-color: var(--primaryContainer);
+  }
+  .primaryContainer {
+    /* background-color: var(--primaryContainer); */
+    color: var(--onPrimaryContainer);
+  }
+  .secondaryContainer {
+    /* background-color: var(--secondaryContainer); */
+    color: var(--onSecondaryContainer);
+  }
+  .tertiaryContainer {
+    /* background-color: var(--tertiary); */
+    color: var(--onTertiaryContainer);
+  }
+  .background {
+    color: var(--onPrimaryContainer);
+    background-color: var(--background);
+    box-shadow: var(--shadow);
+  }
+</style>

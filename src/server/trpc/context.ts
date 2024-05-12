@@ -10,7 +10,7 @@ export async function createContextInner(opts?: CreateInnerContextOptions) {
     const native = await useNativeCode()
     return {
         native,
-        tokubetsu
+        tokubetsu,
     }
 }
 

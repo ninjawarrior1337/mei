@@ -1,7 +1,7 @@
 export declare const cc: import("@trpc/server").CreateRouterInner<import("@trpc/server").RootConfig<{
     ctx: {
         req: Request;
-        native: typeof import("../../../native/pkg/mei_native");
+        native: typeof import("native/pkg/mei_native");
         tokubetsu: import("../../tokubetsu").Tokubetsu;
     };
     meta: object;
@@ -12,7 +12,7 @@ export declare const cc: import("@trpc/server").CreateRouterInner<import("@trpc/
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("../../tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -22,7 +22,7 @@ export declare const cc: import("@trpc/server").CreateRouterInner<import("@trpc/
         _meta: object;
         _ctx_out: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("../../tokubetsu").Tokubetsu;
         };
         _input_in: {
@@ -48,7 +48,7 @@ export declare const cc: import("@trpc/server").CreateRouterInner<import("@trpc/
 export declare const hatsuon: import("@trpc/server").CreateRouterInner<import("@trpc/server").RootConfig<{
     ctx: {
         req: Request;
-        native: typeof import("../../../native/pkg/mei_native");
+        native: typeof import("native/pkg/mei_native");
         tokubetsu: import("../../tokubetsu").Tokubetsu;
     };
     meta: object;
@@ -59,7 +59,7 @@ export declare const hatsuon: import("@trpc/server").CreateRouterInner<import("@
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("../../tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -69,7 +69,7 @@ export declare const hatsuon: import("@trpc/server").CreateRouterInner<import("@
         _meta: object;
         _ctx_out: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("../../tokubetsu").Tokubetsu;
         };
         _input_in: {

@@ -1,7 +1,7 @@
 export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<import("@trpc/server").RootConfig<{
     ctx: {
         req: Request;
-        native: typeof import("../../../native/pkg/mei_native");
+        native: typeof import("native/pkg/mei_native");
         tokubetsu: import("~/tokubetsu").Tokubetsu;
     };
     meta: object;
@@ -12,7 +12,7 @@ export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<i
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("~/tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -21,7 +21,7 @@ export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<i
         }>;
         _ctx_out: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("~/tokubetsu").Tokubetsu;
         };
         _input_in: typeof import("@trpc/server").unsetMarker;
@@ -34,7 +34,7 @@ export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<i
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("~/tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -43,7 +43,7 @@ export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<i
         }>;
         _ctx_out: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("~/tokubetsu").Tokubetsu;
         };
         _input_in: typeof import("@trpc/server").unsetMarker;
@@ -56,7 +56,7 @@ export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<i
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("~/tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -66,7 +66,7 @@ export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<i
         _meta: object;
         _ctx_out: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("~/tokubetsu").Tokubetsu;
         };
         _input_in: "next" | "previous";
@@ -78,7 +78,7 @@ export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<i
         _config: import("@trpc/server").RootConfig<{
             ctx: {
                 req: Request;
-                native: typeof import("../../../native/pkg/mei_native");
+                native: typeof import("native/pkg/mei_native");
                 tokubetsu: import("~/tokubetsu").Tokubetsu;
             };
             meta: object;
@@ -87,7 +87,7 @@ export declare const tokubetsuRouter: import("@trpc/server").CreateRouterInner<i
         }>;
         _ctx_out: {
             req: Request;
-            native: typeof import("../../../native/pkg/mei_native");
+            native: typeof import("native/pkg/mei_native");
             tokubetsu: import("~/tokubetsu").Tokubetsu;
         };
         _input_in: typeof import("@trpc/server").unsetMarker;
