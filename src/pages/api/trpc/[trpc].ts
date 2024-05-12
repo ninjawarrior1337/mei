@@ -3,7 +3,7 @@ import { APIRoute } from 'astro';
 import { createContext } from "~/server/trpc/context";
 import { appRouter } from '~/server/trpc/router';
 
-export const all: APIRoute = (opts) => {
+export const ALL: APIRoute = (opts) => {
     const CORS = {
         "Access-Control-Allow-Credentials": "true",
         "Access-Control-Allow-Origin": "*",
