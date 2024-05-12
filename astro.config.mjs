@@ -8,11 +8,7 @@ import wasm from 'vite-plugin-wasm';
 export default defineConfig({
   integrations: [vue(), tailwind()],
   output: "server",
-  adapter: vercel({
-    isr: {
-      expiration: 60
-    },
-  }),
+  adapter: vercel(),
   vite: {
     plugins: [
       wasm()

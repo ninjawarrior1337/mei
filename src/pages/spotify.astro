@@ -4,6 +4,8 @@ import { createContextInner } from "~/server/trpc/context";
 import { spotify } from "~/server/trpc/spotify";
 import { t } from "~/server/trpc/trpc";
 
+Astro.response.headers.append("Cache-Control", "s-maxage=1, stale-while-revalidate=59")
+
 const callerFactory = t.createCallerFactory(spotify);
 const caller = callerFactory({
   ...(await createContextInner()),
