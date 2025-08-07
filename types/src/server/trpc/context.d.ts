@@ -1,5 +1,4 @@
-import { inferAsyncReturnType } from '@trpc/server';
-import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
+import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { Tokubetsu } from "~/tokubetsu";
 interface CreateInnerContextOptions extends Partial<FetchCreateContextFnOptions> {
 }
@@ -12,5 +11,5 @@ export declare function createContext({ req }: FetchCreateContextFnOptions): Pro
     native: typeof import("native/pkg/mei_native");
     tokubetsu: Tokubetsu;
 }>;
-export type Context = inferAsyncReturnType<typeof createContext>;
+export type Context = Awaited<ReturnType<typeof createContext>>;
 export {};

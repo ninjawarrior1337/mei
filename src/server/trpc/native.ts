@@ -4,7 +4,7 @@ import { t } from "./trpc";
 export const cc = t.router({
     render: t.procedure
         .input(z.object({
-            url: z.string().url(),
+            url: z.url(),
             width: z.number().int().positive(),
             height: z.number().int().positive()
         }))

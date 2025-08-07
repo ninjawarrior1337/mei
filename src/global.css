@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-muse: #e4007f;
+  --color-aqours: #009fe8;
+  --color-niji: #fab920;
+  --color-treelar: #3399ff;
+}

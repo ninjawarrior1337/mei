@@ -1,5 +1,4 @@
-import { inferAsyncReturnType } from '@trpc/server';
-import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
+import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { Tokubetsu } from "~/tokubetsu"
 import { useNativeCode } from '~/mei_native';
 
@@ -24,4 +23,4 @@ export async function createContext({
     }
 }
 
-export type Context = inferAsyncReturnType<typeof createContext>;
+export type Context = Awaited<ReturnType<typeof createContext>>;
