@@ -22,7 +22,7 @@
     "dev": "astro dev",
     "build": "./build.sh",
     "build:types": "tsc --project tsconfig.types.json",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/vercel": "^8.2.5",
