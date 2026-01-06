@@ -1,10 +1,12 @@
-export type Character = {
-    name: string;
-    color: string;
-    birthday: string;
-};
+import { z } from "zod";
+export declare const Character: z.ZodObject<{
+    name: z.ZodString;
+    color: z.ZodString;
+    birthday: z.ZodString;
+}, z.core.$strip>;
+export type Character = z.infer<typeof Character>;
 export declare const PROX: readonly ["next", "previous"];
-export type PROXY_TYPES = typeof PROX[number];
+export type PROXY_TYPES = (typeof PROX)[number];
 export declare class Tokubetsu {
     private TODAY;
     characters: Character[];

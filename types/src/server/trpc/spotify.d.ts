@@ -11,12 +11,12 @@ export declare const spotify: import("@trpc/server").TRPCBuiltRouter<{
     songInfo: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
         output: {
-            entity_picture: string;
             media_content_type: "podcast" | "music";
             media_title: string;
             media_artist: string;
             media_album_name: string;
             media_track: number;
+            entity_picture: string;
             media_content_id: string;
         } | null;
         meta: object;

@@ -29,6 +29,7 @@ export const hatsuon = t.router({
             str: z.string(),
             pitches: z.array(z.number().lt(256))
         }))
+        .output(z.string())
         .query(({input, ctx}) => {
             const pitches = new Uint8Array(input.pitches)
             const img = ctx.native.hatsuon.render(input.str, pitches)

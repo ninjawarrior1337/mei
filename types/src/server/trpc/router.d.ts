@@ -25,22 +25,38 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
         birthdayToday: import("@trpc/server").TRPCQueryProcedure<{
             input: void;
-            output: import("../../tokubetsu").Character | null;
+            output: {
+                name: string;
+                color: string;
+                birthday: string;
+            } | null;
             meta: object;
         }>;
         birthdaysToday: import("@trpc/server").TRPCQueryProcedure<{
             input: void;
-            output: import("../../tokubetsu").Character[];
+            output: {
+                name: string;
+                color: string;
+                birthday: string;
+            }[];
             meta: object;
         }>;
         proxBirthday: import("@trpc/server").TRPCQueryProcedure<{
             input: "next" | "previous";
-            output: import("../../tokubetsu").Character;
+            output: {
+                name: string;
+                color: string;
+                birthday: string;
+            };
             meta: object;
         }>;
         allCharacters: import("@trpc/server").TRPCQueryProcedure<{
             input: void;
-            output: import("../../tokubetsu").Character[];
+            output: {
+                name: string;
+                color: string;
+                birthday: string;
+            }[];
             meta: object;
         }>;
     }>>;
@@ -102,12 +118,12 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         songInfo: import("@trpc/server").TRPCQueryProcedure<{
             input: void;
             output: {
-                entity_picture: string;
                 media_content_type: "podcast" | "music";
                 media_title: string;
                 media_artist: string;
                 media_album_name: string;
                 media_track: number;
+                entity_picture: string;
                 media_content_id: string;
             } | null;
             meta: object;

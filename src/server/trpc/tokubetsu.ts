@@ -1,20 +1,21 @@
 import { z } from "zod";
 import { procedure, router } from "./trpc";
-import { PROX } from "~/tokubetsu";
+import { Character, PROX } from "~/tokubetsu";
 
 export const tokubetsuRouter = router({
-    birthdayToday: procedure.query(({ ctx }) => {
-        return ctx.tokubetsu.getBirthdayIdol()
+  birthdayToday: procedure.output(z.nullable(Character)).query(({ ctx }) => {
+    return ctx.tokubetsu.getBirthdayIdol();
+  }),
+  birthdaysToday: procedure.output(z.array(Character)).query(({ ctx }) => {
+    return ctx.tokubetsu.getBirthdayIdols();
+  }),
+  proxBirthday: procedure
+    .input(z.enum(PROX))
+    .output(Character)
+    .query(({ input, ctx }) => {
+      return ctx.tokubetsu.proxBirthday(input);
     }),
-    birthdaysToday: procedure.query(({ ctx }) => {
-        return ctx.tokubetsu.getBirthdayIdols()
-    }),
-    proxBirthday: procedure
-        .input(z.enum(PROX))
-        .query(({ input, ctx }) => {
-            return ctx.tokubetsu.proxBirthday(input)
-        }),
-    allCharacters: procedure.query(({ ctx }) => {
-        return ctx.tokubetsu.characters
-    })
-})
+  allCharacters: procedure.output(z.array(Character)).query(({ ctx }) => {
+    return ctx.tokubetsu.characters;
+  }),
+});

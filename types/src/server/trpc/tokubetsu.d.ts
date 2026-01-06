@@ -10,22 +10,38 @@ export declare const tokubetsuRouter: import("@trpc/server").TRPCBuiltRouter<{
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
     birthdayToday: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
-        output: import("~/tokubetsu").Character | null;
+        output: {
+            name: string;
+            color: string;
+            birthday: string;
+        } | null;
         meta: object;
     }>;
     birthdaysToday: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
-        output: import("~/tokubetsu").Character[];
+        output: {
+            name: string;
+            color: string;
+            birthday: string;
+        }[];
         meta: object;
     }>;
     proxBirthday: import("@trpc/server").TRPCQueryProcedure<{
         input: "next" | "previous";
-        output: import("~/tokubetsu").Character;
+        output: {
+            name: string;
+            color: string;
+            birthday: string;
+        };
         meta: object;
     }>;
     allCharacters: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
-        output: import("~/tokubetsu").Character[];
+        output: {
+            name: string;
+            color: string;
+            birthday: string;
+        }[];
         meta: object;
     }>;
 }>>;

@@ -61,7 +61,7 @@ const schemeToRGBScheme = (s: Scheme): Record<G, string> => {
 };
 
 export const spotify = t.router({
-  songInfo: t.procedure.query(async () => {
+  songInfo: t.procedure.output(z.nullable(spotifyMediaInfo)).query(async () => {
     return await getSpotifyMediaInfo();
   }),
   coverInfo: t.procedure.query(async () => {
