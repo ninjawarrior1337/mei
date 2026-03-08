@@ -1,0 +1,54 @@
+{
+  "ikizulive": [
+    {
+      "name": "Polka Takahashi",
+      "color": "#ffff66",
+      "birthday": "8/18"
+    },
+    {
+      "name": "Mai Azabu",
+      "color": "#4d93d9",
+      "birthday": "2/13"
+    },
+    {
+      "name": "Akira Goto",
+      "color": "#b5e6a2",
+      "birthday": "7/9"
+    },
+    {
+      "name": "Hanabi Komagata",
+      "color": "#ff4747",
+      "birthday": "6/11"
+    },
+    {
+      "name": "Miracle Kanazawa",
+      "color": "#ffb6c1",
+      "birthday": "3/2"
+    },
+    {
+      "name": "Noriko Chofu",
+      "color": "#cc66ff",
+      "birthday": "4/4"
+    },
+    {
+      "name": "Yukuri Harumiya",
+      "color": "#c0e6f5",
+      "birthday": "9/22"
+    },
+    {
+      "name": "Aurora Konohana",
+      "color": "#ff5b9d",
+      "birthday": "1/3"
+    },
+    {
+      "name": "Midori Yamada",
+      "color": "#3fbf7f",
+      "birthday": "5/7"
+    },
+    {
+      "name": "Shion Sasaki",
+      "color": "#f2f2f2",
+      "birthday": "11/11"
+    }
+  ]
+}

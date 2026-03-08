@@ -3,6 +3,7 @@ import llSIP from "../assets/tokubetsu/ll/sip.json";
 import llS from "../assets/tokubetsu/ll/sunshine.json";
 import llN from "../assets/tokubetsu/ll/niji.json";
 import llSS from "../assets/tokubetsu/ll/superstar.json";
+import llIKIZULIVE from "../assets/tokubetsu/ll/ikizulive.json";
 import { z } from "zod";
 
 export const Character = z.object({
@@ -19,6 +20,7 @@ const TOKUBETSU_DATA = {
   sunshine: llS.sunshine,
   niji: llN.niji,
   superstar: llSS.superstar,
+  ikizulive: llIKIZULIVE.ikizulive,
 } as Record<string, Character[]>;
 
 export const PROX = ["next", "previous"] as const;
