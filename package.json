@@ -20,12 +20,11 @@
   "scripts": {
     "native-build": "wasm-pack build native",
     "dev": "astro dev",
-    "build": "./build.sh",
+    "build": "astro build",
     "build:types": "tsc --project tsconfig.types.json",
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/vercel": "^9.0.2",
     "@astrojs/vue": "^5.1.3",
     "@material/material-color-utilities": "^0.3.0",

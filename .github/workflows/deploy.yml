@@ -1,16 +1,20 @@
-name: Deploy
+name: Vercel Production Deployment
 
 on:
   push:
     branches:
       - main
 
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 jobs:
-  deploy:
+  Deploy-Production:
     runs-on: ubuntu-latest
-    name: Deploy
     steps:
       - uses: actions/checkout@v6
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -18,13 +22,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: 'pnpm'
-      
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          target: wasm32-unknown-unknown
-          override: true
+          cache: "pnpm"
+
+      - name: Install Rust
+        run: |
+          rustup install stable
+          rustup target add wasm32-unknown-unknown --toolchain stable
+          rustup default stable
 
       - uses: actions/cache@v3
         with:
@@ -36,10 +40,20 @@ jobs:
             native/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('native/Cargo.toml') }}
 
-      - run: curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | bash
-      - run: wasm-pack build --target web native
-      - run: pnpm install
-      - name: Publish
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
+      - name: Install wasm-pack
+        run: curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | bash
+
+      - name: Build wasm
+        run: wasm-pack build --target web native
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
