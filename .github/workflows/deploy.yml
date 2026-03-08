@@ -36,7 +36,7 @@ jobs:
             native/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('native/Cargo.toml') }}
 
-      - run: curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - run: curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | bash
       - run: wasm-pack build --target web native
       - run: pnpm install
       - name: Publish
