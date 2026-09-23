@@ -71,11 +71,25 @@ export class Tokubetsu {
   }
 
   public getBirthdayIdols(): Character[] {
-    return this.characters.filter(
-      (c) =>
-        this.checkBirthday(c, "Asia/Tokyo") ||
-        this.checkBirthday(c, "America/Los_Angeles"),
-    );
+    //Resolve today's date once per timezone rather than once per character.
+    const tokyoToday = this.getTZDayMonthAsString("Asia/Tokyo");
+    const laToday = this.getTZDayMonthAsString("America/Los_Angeles");
+
+    //Order by timezone precedence: characters whose birthday it is in Tokyo
+    //come first, then the ones it is only still their birthday for in LA.
+    const inTokyo: Character[] = [];
+    const inLaOnly: Character[] = [];
+    for (const c of this.characters) {
+      const [iMonth, iDay] = c.birthday.split("/");
+      const inTokyoToday = iMonth == tokyoToday[0] && iDay == tokyoToday[1];
+      const inLaToday = iMonth == laToday[0] && iDay == laToday[1];
+      if (inTokyoToday) {
+        inTokyo.push(c);
+      } else if (inLaToday) {
+        inLaOnly.push(c);
+      }
+    }
+    return [...inTokyo, ...inLaOnly];
   }
 
   public proxBirthday(prox: PROXY_TYPES): Character {
